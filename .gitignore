@@ -55,6 +55,11 @@ server/plugins/CoreProtect/
 server/plugins/LuckPerms/
 server/plugins/PluginMetrics/
 server/plugins/bStats/
+# owner-only plugins on the reference server (AdvancedReplay + ProtocolLib): jars and data never tracked
+server/plugins/AdvancedReplay/
+server/plugins/ProtocolLib/
+server/plugins/Replay*.jar
+server/plugins/ProtocolLib*.jar
 server/plugins/mcMMO/flatfile/
 server/plugins/Essentials/userdata/
 server/plugins/Essentials/userdata-npc-backup/
