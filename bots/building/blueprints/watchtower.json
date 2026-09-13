@@ -1,0 +1,73 @@
+{
+  "id": "watchtower",
+  "name": "Watchtower",
+  "category": "tower",
+  "tier_min": 2,
+  "tier_max": 3,
+  "archetypes": ["builder", "pvper"],
+  "placement": "surface",
+  "dimensions": { "x": 3, "y": 7, "z": 3 },
+  "description": "3x3 cobble watchtower, six blocks tall, ladder up the inside, fence railing on the top platform.",
+  "materials": {
+    "cobblestone": 49,
+    "wooden_door": 1,
+    "fence": 8,
+    "ladder": 4,
+    "torch": 1
+  },
+  "substitutions": {
+    "cobblestone": ["stone", "mossy_cobblestone"],
+    "fence": ["wooden_fence"]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "D": "wooden_door",
+    "F": "fence"
+  },
+  "layers": [
+    [
+      "CCC",
+      "CCC",
+      "CCC"
+    ],
+    [
+      "CCC",
+      "C.C",
+      "CDC"
+    ],
+    [
+      "CCC",
+      "C.C",
+      "CCC"
+    ],
+    [
+      "CCC",
+      "C.C",
+      "CCC"
+    ],
+    [
+      "CCC",
+      "C.C",
+      "CCC"
+    ],
+    [
+      "CCC",
+      "CCC",
+      "CCC"
+    ],
+    [
+      "FFF",
+      "F.F",
+      "FFF"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    { "token": "ladder", "offset": { "x": 1, "y": 1, "z": 0 } },
+    { "token": "ladder", "offset": { "x": 1, "y": 2, "z": 0 } },
+    { "token": "ladder", "offset": { "x": 1, "y": 3, "z": 0 } },
+    { "token": "ladder", "offset": { "x": 1, "y": 4, "z": 0 } },
+    { "token": "torch", "offset": { "x": 1, "y": 6, "z": 1 } }
+  ]
+}

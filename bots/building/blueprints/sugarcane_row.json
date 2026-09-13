@@ -1,0 +1,38 @@
+{
+  "id": "sugarcane_row",
+  "name": "Sugarcane Row",
+  "category": "farm",
+  "tier_min": 1,
+  "tier_max": 2,
+  "archetypes": ["farmer", "builder"],
+  "placement": "surface",
+  "dimensions": { "x": 8, "y": 2, "z": 2 },
+  "description": "Single 8-block row of sugarcane growing along a water channel. Sand bed on one side, water on the other.",
+  "materials": {
+    "sand": 8,
+    "reeds": 8,
+    "water": 8
+  },
+  "substitutions": {
+    "sand": ["dirt", "grass"],
+    "water": []
+  },
+  "token_map": {
+    ".": null,
+    "S": "sand",
+    "R": "reeds",
+    "w": "water"
+  },
+  "layers": [
+    [
+      "wwwwwwww",
+      "SSSSSSSS"
+    ],
+    [
+      "........",
+      "RRRRRRRR"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": []
+}

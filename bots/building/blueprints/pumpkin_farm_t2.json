@@ -1,0 +1,286 @@
+{
+  "id": "pumpkin_farm_t2",
+  "name": "Underground Pumpkin Farm",
+  "category": "farm",
+  "tier_min": 2,
+  "tier_max": 2,
+  "archetypes": [
+    "farmer"
+  ],
+  "placement": "underground",
+  "dimensions": {
+    "x": 12,
+    "y": 4,
+    "z": 6
+  },
+  "description": "12×4×6 underground pumpkin/melon farm with cobble shell and torches.",
+  "materials": {
+    "water": 24,
+    "farmland": 24,
+    "dirt": 24,
+    "cobblestone": 134,
+    "wooden_door": 1,
+    "pumpkin_seeds": 20,
+    "torch": 6
+  },
+  "substitutions": {
+    "water": [],
+    "cobblestone": [
+      "stone",
+      "mossy_cobblestone"
+    ]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "d": "dirt",
+    "F": "farmland",
+    "W": "water",
+    "D": "wooden_door"
+  },
+  "layers": [
+    [
+      "WWWWWWWWWWWW",
+      "FFFFFFFFFFFF",
+      "dddddddddddd",
+      "dddddddddddd",
+      "FFFFFFFFFFFF",
+      "WWWWWWWWWWWW"
+    ],
+    [
+      "DCCCCCCCCCCC",
+      "C..........C",
+      "C..........C",
+      "C..........C",
+      "C..........C",
+      "CCCCCCCCCCCC"
+    ],
+    [
+      ".CCCCCCCCCCC",
+      "C..........C",
+      "C..........C",
+      "C..........C",
+      "C..........C",
+      "CCCCCCCCCCCC"
+    ],
+    [
+      "CCCCCCCCCCCC",
+      "CCCCCCCCCCCC",
+      "CCCCCCCCCCCC",
+      "CCCCCCCCCCCC",
+      "CCCCCCCCCCCC",
+      "CCCCCCCCCCCC"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 10,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "pumpkin_seeds",
+      "offset": {
+        "x": 10,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 3
+      }
+    }
+  ]
+}

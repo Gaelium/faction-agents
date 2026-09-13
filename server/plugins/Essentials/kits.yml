@@ -1,0 +1,48 @@
+# EssentialsX kits — AI Factions server
+# Cooldown unit: seconds. -1 = once per life.
+# Item format (1.8.8 legacy IDs/names): supports "item[:data] amount [enchant:level]..."
+# Group-locked kits: use Essentials permission "essentials.kits.<kitname>" assigned via LuckPerms.
+
+kits:
+  starter:
+    delay: 600
+    items:
+      - 268 1 name:&fStarter_Sword
+      - 269 1
+      - 270 1
+      - 271 1
+      - 298 1
+      - 299 1
+      - 300 1
+      - 301 1
+      - 297 16
+      - 364 8
+
+  vip:
+    delay: 7200
+    items:
+      - 267 1 sharpness:1 name:&bVIP_Sword
+      - 257 1 efficiency:1
+      - 258 1
+      - 256 1
+      - 302 1
+      - 303 1
+      - 304 1
+      - 305 1
+      - 297 32
+      - 364 16
+      - 322 2
+
+  mvp:
+    delay: 21600
+    items:
+      - 276 1 sharpness:2 unbreaking:1 name:&5MVP_Sword
+      - 278 1 efficiency:2 unbreaking:1
+      - 307 1 protection:2
+      - 308 1 protection:2
+      - 309 1 protection:2
+      - 310 1 protection:2
+      - 368 16
+      - 322:1 4
+      - 297 64
+      - 364 32

@@ -1,0 +1,81 @@
+username: TestBot2
+archetype: pvper
+rank: vip
+skill_tier: 4
+
+ambition: 0.85
+faction_preferences:
+  style: pretentious-one-word
+  themes: ["axes", "reign", "dominion"]
+
+voice:
+  tone: smug
+  greeting: "back for more?"
+  catchphrases:
+    - "axe diff"
+    - "your armor looks tired"
+    - "you fell for it"
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+
+redis:
+  host: localhost
+  port: 6379
+
+spawn:
+  x: 0
+  y: 64
+  z: 0
+
+arena:
+  x: 0
+  y: 64
+  z: 0
+
+# Skill tier 4 — axe-main who leans on mcMMO Axes (Armor Impact) to melt
+# your armor faster than your sword melts theirs. In 1.8 PvP, axes hit
+# HARDER than swords but can't block-hit (blocking is a sword-only
+# right-click). That structural gap is the tell:
+#
+#   • No block-hit while they're on axe → they tank every hit you land.
+#     Trade HP aggressively; sword-block on each of their swings and
+#     you'll pull ahead.
+#   • High combo_follow_rate means they chase hard with sprint-resets
+#     — strafe against their knockback angle to reset range.
+#   • Pot at HP 14 but in 1.8 there's a ~150ms swap window between axe
+#     and heal item; force the pot early with back-to-back crits.
+#   • No jump-crit pattern baked in — 1.8 crits on any falling attack,
+#     and we don't currently model them, so don't expect the tell from
+#     later-version axe players.
+backstory: >
+  Been on the server since opening day. Obsessed with mcMMO Axes, maxed
+  the skill, now picks fights to show off Armor Impact. Speaks with
+  condescending confidence.
+
+values:
+  risk_tolerance: 0.9
+  social_preference: 0.3
+  material_greed: 0.5
+  loyalty: 0.4
+  curiosity: 0.3
+
+schedule:
+  primary_hours: [20, 24]
+  secondary_hours: [12, 16]
+  session_minutes: [60, 180]
+  weekend_boost: true
+
+combat:
+  reaction_ms_min: 180
+  reaction_ms_max: 300
+  aim_error_deg: 2.0
+  cps: 10
+  block_hit_rate: 0.60   # only fires if somehow holding a sword
+  pot_at_hp: 14
+  pot_success_rate: 0.85
+  combo_follow_rate: 0.85
+  flee_at_hp: 8
+  preferred_weapon: axe

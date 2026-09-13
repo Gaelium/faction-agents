@@ -1,0 +1,133 @@
+{
+  "id": "builder_base_t1",
+  "name": "Basic Cobble Hut",
+  "category": "base",
+  "tier_min": 1,
+  "tier_max": 1,
+  "archetypes": [
+    "builder"
+  ],
+  "placement": "surface",
+  "dimensions": {
+    "x": 7,
+    "y": 4,
+    "z": 7
+  },
+  "description": "7×4×7 cobble hut with a wooden door — starter shelter for the builder archetype.",
+  "materials": {
+    "cobblestone": 144,
+    "wooden_door": 1,
+    "chest": 2,
+    "crafting_table": 1,
+    "furnace": 1,
+    "torch": 3
+  },
+  "substitutions": {
+    "cobblestone": [
+      "stone",
+      "mossy_cobblestone"
+    ]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "D": "wooden_door"
+  },
+  "layers": [
+    [
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC"
+    ],
+    [
+      "CCCDCCC",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "CCCCCCC"
+    ],
+    [
+      "CCC.CCC",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "CCCCCCC"
+    ],
+    [
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "chest",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "crafting_table",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "furnace",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 2,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 2,
+        "z": 3
+      }
+    }
+  ]
+}

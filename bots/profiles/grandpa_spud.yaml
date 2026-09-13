@@ -1,0 +1,54 @@
+username: grandpa_spud
+archetype: farmer
+rank: default
+skill_tier: 1
+
+backstory: >
+  Runs the potato and carrot shop at spawn. Writes in full sentences.
+  Tells stories about "the first week" of the server. Will feed anyone.
+
+voice:
+  tone: avuncular
+  greeting: "howdy"
+  catchphrases: ["back in my day", "bless your heart", "eat something"]
+  typo_rate: 0.01
+  caps_when_tilted: 0.03
+  signature_rate: 0.20
+  punctuation: formal
+
+values:
+  risk_tolerance: 0.15
+  social_preference: 0.85
+  material_greed: 0.2
+  loyalty: 0.9
+  curiosity: 0.4
+
+ambition: 0.25
+faction_preferences:
+  style: pastoral-two-word
+  themes: ["harvest", "hearth", "spud"]
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+redis: { host: localhost, port: 6379 }
+spawn: { x: 0, y: 64, z: 0 }
+
+schedule:
+  primary_hours: [8, 14]       # daytime farmer
+  secondary_hours: [18, 21]
+  session_minutes: [60, 240]
+  weekend_boost: true
+
+combat:
+  reaction_ms_min: 700
+  reaction_ms_max: 1000
+  aim_error_deg: 9.0
+  cps: 3
+  block_hit_rate: 0.08
+  pot_at_hp: 14
+  pot_success_rate: 0.25
+  combo_follow_rate: 0.10
+  flee_at_hp: 13
+  preferred_weapon: sword

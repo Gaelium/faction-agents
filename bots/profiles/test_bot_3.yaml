@@ -1,0 +1,68 @@
+username: TestBot3
+archetype: builder
+rank: default
+skill_tier: 4
+
+# Builders rarely lead — most would rather contribute to someone else's base.
+ambition: 0.4
+faction_preferences:
+  style: cozy-two-words
+  themes: ["hearth", "stone", "workshop"]
+
+voice:
+  tone: wholesome
+  greeting: "hey all"
+  catchphrases:
+    - "nice base btw"
+    - "need any help?"
+    - "wholesome"
+  typo_rate: 0.015
+  caps_when_tilted: 0.05      # builders rarely shout
+  signature_rate: 0.18
+  punctuation: casual
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+
+redis:
+  host: localhost
+  port: 6379
+
+spawn:
+  x: 0
+  y: 64
+  z: 0
+
+# Builder isn't a PvPer. Keep combat minimal: long reaction, low CPS,
+# flees fast. The chat layer is the personality vehicle.
+backstory: >
+  Came for the creative outlet, tolerates the PvP. Keeps a cozy
+  cobblestone cottage at spawn and runs a free shop of torches and
+  doors. Wholesome to a fault.
+
+values:
+  risk_tolerance: 0.2
+  social_preference: 0.8
+  material_greed: 0.2
+  loyalty: 0.8
+  curiosity: 0.7
+
+schedule:
+  primary_hours: [16, 22]
+  secondary_hours: [9, 13]
+  session_minutes: [60, 240]
+  weekend_boost: true
+
+combat:
+  reaction_ms_min: 600
+  reaction_ms_max: 900
+  aim_error_deg: 9.0
+  cps: 3
+  block_hit_rate: 0.05
+  pot_at_hp: 14
+  pot_success_rate: 0.25
+  combo_follow_rate: 0.15
+  flee_at_hp: 12
+  preferred_weapon: sword

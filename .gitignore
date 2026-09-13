@@ -1,0 +1,86 @@
+# Configuration is tracked, runtime state is not.
+
+# secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# node
+node_modules
+npm-debug.log*
+
+# bot runtime data (created on demand; data/.gitkeep is the only tracked file)
+data/*
+!data/.gitkeep
+
+# java / maven (BotBridge)
+server/BotBridge/target/
+server/BotBridge/.idea/
+server/BotBridge/*.iml
+server/BotBridge/dependency-reduced-pom.xml
+
+# minecraft server: binaries, worlds, runtime
+server/*.jar
+server/plugins/*.jar
+server/cache/
+server/logs/
+server/crash-reports/
+server/versions/
+server/libraries/
+server/.paper-remapped/
+server/world/
+server/world_nether/
+server/world_the_end/
+server/banned-*.json
+server/whitelist.json
+server/usercache.json
+server/ops.json
+server/eula.txt
+server/server.properties
+!server/server.properties.example
+
+# minecraft server: plugin state (the configs next to them stay tracked)
+server/plugins/*/data/
+server/plugins/*/database/
+server/plugins/*/backups/
+server/plugins/*/backup/
+server/plugins/*/sessions/
+server/plugins/*/*.db
+server/plugins/*/*.sqlite
+server/plugins/update/
+server/plugins/CoreProtect/
+server/plugins/LuckPerms/
+server/plugins/PluginMetrics/
+server/plugins/bStats/
+server/plugins/mcMMO/flatfile/
+server/plugins/Essentials/userdata/
+server/plugins/Essentials/userdata-npc-backup/
+server/plugins/Essentials/usermap.*
+server/plugins/Essentials/upgrades-done.yml
+server/plugins/Essentials/items.csv
+server/plugins/Essentials/warps/
+server/plugins/MassiveCore/conf.json
+server/plugins/MassiveCore/idnamecache.json
+server/plugins/WorldGuard/cache/
+server/plugins/WorldEdit/sessions/
+server/plugins/WorldEdit/schematics/
+server/plugins/SkinsRestorer/*
+!server/plugins/SkinsRestorer/config.yml
+
+# massive factions: player, faction and claim state (the rules under mstore stay tracked)
+server/mstore/factions_mplayer/
+server/mstore/factions_faction/
+server/mstore/factions_board/
+
+# redis
+*.rdb
+
+# editors / os
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+*.log

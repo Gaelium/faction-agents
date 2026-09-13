@@ -1,0 +1,54 @@
+{
+  "id": "pitfall_trap",
+  "name": "Pitfall Trap",
+  "category": "trap",
+  "tier_min": 2,
+  "tier_max": 3,
+  "archetypes": ["builder", "ratter", "pvper"],
+  "placement": "surface",
+  "anchor_y_offset": -4,
+  "dimensions": { "x": 3, "y": 5, "z": 3 },
+  "description": "3x3 hole, four blocks deep, covered with sand on top. Digs out the column then lays the sand cap. Hostile players step on the sand, gravity drops them into the pit.",
+  "materials": {
+    "cobblestone": 9,
+    "sand": 9
+  },
+  "substitutions": {
+    "cobblestone": ["stone", "mossy_cobblestone"],
+    "sand": ["gravel"]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "S": "sand"
+  },
+  "layers": [
+    [
+      "CCC",
+      "CCC",
+      "CCC"
+    ],
+    [
+      "...",
+      "...",
+      "..."
+    ],
+    [
+      "...",
+      "...",
+      "..."
+    ],
+    [
+      "...",
+      "...",
+      "..."
+    ],
+    [
+      "SSS",
+      "SSS",
+      "SSS"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": []
+}

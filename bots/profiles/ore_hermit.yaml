@@ -1,0 +1,55 @@
+username: ore_hermit
+archetype: grinder
+rank: default
+skill_tier: 1
+
+backstory: >
+  Lives in a branch mine at y=11. Has spoken fewer than 10 times since
+  joining. Owns more cobblestone than anyone. Reports diamond ore
+  locations to nobody.
+
+voice:
+  tone: taciturn
+  greeting: "."
+  catchphrases: ["k", "...", "mine"]
+  typo_rate: 0.01
+  caps_when_tilted: 0.05
+  signature_rate: 0.05
+  punctuation: minimal
+
+values:
+  risk_tolerance: 0.2
+  social_preference: 0.05
+  material_greed: 0.9
+  loyalty: 0.3
+  curiosity: 0.3
+
+ambition: 0.1
+faction_preferences:
+  style: one-word
+  themes: ["hermit", "vein", "pit"]
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+redis: { host: localhost, port: 6379 }
+spawn: { x: 0, y: 64, z: 0 }
+
+schedule:
+  primary_hours: [22, 30]      # overnight miner (wraps)
+  secondary_hours: [6, 10]
+  session_minutes: [180, 360]
+  weekend_boost: false
+
+combat:
+  reaction_ms_min: 650
+  reaction_ms_max: 900
+  aim_error_deg: 7.0
+  cps: 4
+  block_hit_rate: 0.10
+  pot_at_hp: 14
+  pot_success_rate: 0.30
+  combo_follow_rate: 0.20
+  flee_at_hp: 12
+  preferred_weapon: sword

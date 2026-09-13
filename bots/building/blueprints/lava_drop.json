@@ -1,0 +1,57 @@
+{
+  "id": "lava_drop",
+  "name": "Lava Drop",
+  "category": "trap",
+  "tier_min": 3,
+  "tier_max": 4,
+  "archetypes": ["builder", "ratter"],
+  "placement": "surface",
+  "anchor_y_offset": -4,
+  "dimensions": { "x": 3, "y": 5, "z": 3 },
+  "description": "1-wide gauntlet over a narrow stone-walled pit. Lava source at the bottom if a bucket is available; otherwise degrades to a four-block fall.",
+  "materials": {
+    "cobblestone": 32,
+    "sand": 9,
+    "lava": 1
+  },
+  "substitutions": {
+    "cobblestone": ["stone", "mossy_cobblestone"],
+    "sand": ["gravel"],
+    "lava": []
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "S": "sand",
+    "L": "lava"
+  },
+  "layers": [
+    [
+      "CCC",
+      "CLC",
+      "CCC"
+    ],
+    [
+      "CCC",
+      "C.C",
+      "CCC"
+    ],
+    [
+      "CCC",
+      "C.C",
+      "CCC"
+    ],
+    [
+      "CCC",
+      "C.C",
+      "CCC"
+    ],
+    [
+      "SSS",
+      "SSS",
+      "SSS"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": []
+}

@@ -1,0 +1,81 @@
+{
+  "id": "generic_base_t1",
+  "name": "Hillside Hole",
+  "category": "base",
+  "tier_min": 1,
+  "tier_max": 1,
+  "archetypes": [
+    "builder",
+    "pvper",
+    "farmer",
+    "grinder",
+    "ratter",
+    "diplomat"
+  ],
+  "placement": "underground",
+  "dimensions": {
+    "x": 5,
+    "y": 3,
+    "z": 5
+  },
+  "description": "5×3×5 hillside hole — minimal cobble shelter for non-builders.",
+  "materials": {
+    "cobblestone": 40,
+    "wooden_door": 1,
+    "chest": 1,
+    "torch": 1
+  },
+  "substitutions": {
+    "cobblestone": [
+      "stone",
+      "mossy_cobblestone"
+    ]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "D": "wooden_door"
+  },
+  "layers": [
+    [
+      ".....",
+      ".....",
+      ".....",
+      ".....",
+      "....."
+    ],
+    [
+      "CCDCC",
+      "C...C",
+      "C...C",
+      "C...C",
+      "CCCCC"
+    ],
+    [
+      "CCCCC",
+      "CCCCC",
+      "CCCCC",
+      "CCCCC",
+      "CCCCC"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "chest",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+username: Diana_Eve
+archetype: grinder
+rank: vip
+skill_tier: 2
+
+backstory: >
+  Methodical. Keeps checklists. Hits daily mcMMO targets then logs off.
+  Kind in a clipped way. The server's unofficial librarian.
+
+voice:
+  tone: measured
+  greeting: "good evening"
+  catchphrases: ["on schedule", "marked down", "efficient"]
+  typo_rate: 0.005
+  caps_when_tilted: 0.02
+  signature_rate: 0.15
+  punctuation: formal
+
+values:
+  risk_tolerance: 0.25
+  social_preference: 0.4
+  material_greed: 0.5
+  loyalty: 0.7
+  curiosity: 0.8
+
+ambition: 0.35
+faction_preferences:
+  style: elegant-one-word
+  themes: ["ledger", "quill", "eve"]
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+redis: { host: localhost, port: 6379 }
+spawn: { x: 0, y: 64, z: 0 }
+
+schedule:
+  primary_hours: [19, 22]
+  secondary_hours: [7, 10]
+  session_minutes: [60, 180]
+  weekend_boost: false
+
+combat:
+  reaction_ms_min: 430
+  reaction_ms_max: 620
+  aim_error_deg: 5.5
+  cps: 5
+  block_hit_rate: 0.20
+  pot_at_hp: 14
+  pot_success_rate: 0.55
+  combo_follow_rate: 0.40
+  flee_at_hp: 9
+  preferred_weapon: sword

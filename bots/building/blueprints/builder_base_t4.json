@@ -1,0 +1,448 @@
+{
+  "id": "builder_base_t4",
+  "name": "Obsidian Vault",
+  "category": "base",
+  "tier_min": 4,
+  "tier_max": 4,
+  "archetypes": [
+    "builder"
+  ],
+  "placement": "underground",
+  "dimensions": {
+    "x": 13,
+    "y": 7,
+    "z": 13
+  },
+  "description": "13×7×13 obsidian vault with crafting / portal alcoves, water layer, and a chest bank.",
+  "materials": {
+    "obsidian": 586,
+    "iron_door": 1,
+    "chest": 12,
+    "crafting_table": 1,
+    "furnace": 2,
+    "anvil": 1,
+    "enchanting_table": 1,
+    "brewing_stand": 1,
+    "torch": 10
+  },
+  "substitutions": {},
+  "token_map": {
+    ".": null,
+    "I": "iron_door",
+    "O": "obsidian"
+  },
+  "layers": [
+    [
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOOOO",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "I...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "OOOOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOOOO",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "............O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "OOOOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOOOO",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "OOOOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOOOO",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "OOOOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOOOO",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "O...........O",
+      "OOOOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO",
+      "OOOOOOOOOOOOO"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "chest",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "token": "crafting_table",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "furnace",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "furnace",
+      "offset": {
+        "x": 10,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "anvil",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "enchanting_table",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "brewing_stand",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 2,
+        "z": 5
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 4,
+        "z": 6
+      }
+    },
+    {
+      "token": "obsidian",
+      "offset": {
+        "x": 11,
+        "y": 4,
+        "z": 7
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 3,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 9,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 3,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 9,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 6,
+        "y": 5,
+        "z": 6
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 3,
+        "y": 5,
+        "z": 6
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 9,
+        "y": 5,
+        "z": 6
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 6,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 6,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 6,
+        "y": 5,
+        "z": 11
+      }
+    }
+  ]
+}

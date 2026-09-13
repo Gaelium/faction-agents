@@ -1,0 +1,403 @@
+{
+  "id": "sugarcane_auto_t4",
+  "name": "Automatic Sugarcane Farm",
+  "category": "farm",
+  "tier_min": 4,
+  "tier_max": 4,
+  "archetypes": [
+    "farmer"
+  ],
+  "placement": "surface",
+  "dimensions": {
+    "x": 20,
+    "y": 3,
+    "z": 8
+  },
+  "description": "20×3×8 automatic sugarcane farm with redstone clock, pistons, and hopper bank.",
+  "materials": {
+    "sand": 40,
+    "water": 36,
+    "cobblestone": 60,
+    "piston": 40,
+    "redstone": 18,
+    "repeater": 4,
+    "redstone_torch": 2,
+    "hopper": 4,
+    "chest": 4,
+    "sugar_cane": 40
+  },
+  "substitutions": {
+    "water": [],
+    "cobblestone": [
+      "stone",
+      "mossy_cobblestone"
+    ]
+  },
+  "token_map": {
+    ".": null,
+    "H": "chest",
+    "C": "cobblestone",
+    "h": "hopper",
+    "i": "piston",
+    "R": "redstone",
+    "o": "redstone_torch",
+    "r": "repeater",
+    "A": "sand",
+    "W": "water"
+  },
+  "layers": [
+    [
+      "CCCCCCCCCCCCCCCCCCCC",
+      "AAAAAAAAAAAAAAAAAAAA",
+      "WWWWWWWWWWWWWWWWWWhh",
+      "CCCCCCCCCCCCCCCCCCCC",
+      "WWWWWWWWWWWWWWWWWWhh",
+      "AAAAAAAAAAAAAAAAAAAA",
+      "....................",
+      "CCCCCCCCCCCCCCCCCCCC"
+    ],
+    [
+      "iiiiiiiiiiiiiiiiiiii",
+      "....................",
+      "..................HH",
+      "RRRRrRRRRRRRrRRRRRRR",
+      "..................HH",
+      "....................",
+      "....................",
+      "iiiiiiiiiiiiiiiiiiii"
+    ],
+    [
+      "....................",
+      "....................",
+      "....................",
+      "or..................",
+      "or..................",
+      "....................",
+      "....................",
+      "...................."
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 10,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 10,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 12,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 12,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 13,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 13,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 14,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 14,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 15,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 15,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 16,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 16,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 17,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 17,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 18,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 18,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 19,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 19,
+        "y": 1,
+        "z": 5
+      }
+    }
+  ]
+}

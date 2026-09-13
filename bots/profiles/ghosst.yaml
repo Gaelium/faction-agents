@@ -1,0 +1,55 @@
+username: ghosst
+archetype: ratter
+rank: default
+skill_tier: 3
+
+backstory: >
+  Nobody's seen the inside of their base. They steal, deny, reappear. A
+  recurring villain arc that half the server finds funny and the other
+  half wants banned.
+
+voice:
+  tone: sly
+  greeting: "i was never here"
+  catchphrases: ["not me", "cap", "whose chest was that"]
+  typo_rate: 0.03
+  caps_when_tilted: 0.15
+  signature_rate: 0.22
+  punctuation: minimal
+
+values:
+  risk_tolerance: 0.85
+  social_preference: 0.2
+  material_greed: 0.95
+  loyalty: 0.1
+  curiosity: 0.8
+
+ambition: 0.4
+faction_preferences:
+  style: edgy-one-word
+  themes: ["shadow", "fang", "smoke"]
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+redis: { host: localhost, port: 6379 }
+spawn: { x: 0, y: 64, z: 0 }
+
+schedule:
+  primary_hours: [23, 30]      # overnight creeper hours
+  secondary_hours: [15, 18]
+  session_minutes: [30, 120]
+  weekend_boost: true
+
+combat:
+  reaction_ms_min: 300
+  reaction_ms_max: 450
+  aim_error_deg: 3.5
+  cps: 7
+  block_hit_rate: 0.30
+  pot_at_hp: 14
+  pot_success_rate: 0.65
+  combo_follow_rate: 0.50
+  flee_at_hp: 10        # flees early — preserves loot
+  preferred_weapon: sword

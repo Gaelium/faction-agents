@@ -1,0 +1,503 @@
+{
+  "id": "wheat_farm_t1",
+  "name": "Surface Wheat Plot",
+  "category": "farm",
+  "tier_min": 1,
+  "tier_max": 1,
+  "archetypes": [
+    "farmer"
+  ],
+  "placement": "surface",
+  "dimensions": {
+    "x": 8,
+    "y": 2,
+    "z": 8
+  },
+  "description": "8×8 surface wheat plot with a central water row.",
+  "materials": {
+    "farmland": 56,
+    "water": 8,
+    "wheat_seeds": 56
+  },
+  "substitutions": {
+    "water": []
+  },
+  "token_map": {
+    ".": null,
+    "F": "farmland",
+    "W": "water"
+  },
+  "layers": [
+    [
+      "FFFFFFFF",
+      "FFFFFFFF",
+      "FFFFFFFF",
+      "WWWWWWWW",
+      "FFFFFFFF",
+      "FFFFFFFF",
+      "FFFFFFFF",
+      "FFFFFFFF"
+    ],
+    [
+      "........",
+      "........",
+      "........",
+      "........",
+      "........",
+      "........",
+      "........",
+      "........"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "token": "wheat_seeds",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 7
+      }
+    }
+  ]
+}

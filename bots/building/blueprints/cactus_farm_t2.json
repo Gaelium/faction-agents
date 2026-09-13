@@ -1,0 +1,216 @@
+{
+  "id": "cactus_farm_t2",
+  "name": "Cactus Drop Grid",
+  "category": "farm",
+  "tier_min": 2,
+  "tier_max": 2,
+  "archetypes": [
+    "farmer"
+  ],
+  "placement": "surface",
+  "dimensions": {
+    "x": 10,
+    "y": 3,
+    "z": 10
+  },
+  "description": "10×3×10 cactus grid surrounded by a water moat.",
+  "materials": {
+    "sand": 16,
+    "water": 36,
+    "cactus": 16,
+    "torch": 2
+  },
+  "substitutions": {
+    "water": []
+  },
+  "token_map": {
+    ".": null,
+    "A": "sand",
+    "W": "water"
+  },
+  "layers": [
+    [
+      "WWWWWWWWWW",
+      "WA.A.A.A.W",
+      "W........W",
+      "WA.A.A.A.W",
+      "W........W",
+      "WA.A.A.A.W",
+      "W........W",
+      "WA.A.A.A.W",
+      "W........W",
+      "WWWWWWWWWW"
+    ],
+    [
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      ".........."
+    ],
+    [
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      ".........."
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "cactus",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 4,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 2,
+        "z": 5
+      }
+    }
+  ]
+}

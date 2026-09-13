@@ -1,0 +1,94 @@
+{
+  "id": "wheat_farm_large",
+  "name": "Large Wheat Farm",
+  "category": "farm",
+  "tier_min": 2,
+  "tier_max": 3,
+  "archetypes": [
+    "farmer",
+    "builder"
+  ],
+  "placement": "surface",
+  "dimensions": {
+    "x": 11,
+    "y": 1,
+    "z": 12
+  },
+  "description": "Fenced 9x10 farmland with two water channels, lit for night growth.",
+  "materials": {
+    "fence": 41,
+    "farmland": 70,
+    "water": 20,
+    "torch": 4,
+    "fence_gate": 1
+  },
+  "substitutions": {
+    "fence": [
+      "wooden_fence"
+    ],
+    "farmland": [
+      "dirt",
+      "grass"
+    ],
+    "water": [],
+    "fence_gate": []
+  },
+  "token_map": {
+    ".": null,
+    "F": "fence",
+    "d": "farmland",
+    "w": "water",
+    "G": "fence_gate"
+  },
+  "layers": [
+    [
+      "FFFFFFFFFFF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FdddwdddwdF",
+      "FFFFFGFFFFF"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "torch",
+      "offset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 10,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 0,
+        "y": 0,
+        "z": 11
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 10,
+        "y": 0,
+        "z": 11
+      }
+    }
+  ]
+}

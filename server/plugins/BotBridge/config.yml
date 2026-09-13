@@ -1,0 +1,24 @@
+redis:
+  host: localhost
+  port: 6379
+  password: ""
+  database: 0
+  timeout-ms: 2000
+
+channels:
+  events: "mc:events"
+  commands: "mc:commands"
+  responses: "mc:responses"
+
+features:
+  combat: true
+  chat: true
+  kit: true
+  economy: true
+  zone: true
+  mcmmo: true
+  factions: true
+
+zone:
+  # minimum milliseconds between zone-checks per player (debounces PlayerMoveEvent)
+  check-interval-ms: 250

@@ -1,0 +1,12 @@
+name: BotBridge
+version: 0.1.0
+main: com.aifactions.botbridge.BotBridgePlugin
+api-version: 1.8
+author: aifactions
+description: Redis pub/sub bridge exposing server events to AI bots.
+softdepend: [Factions, MassiveCore, mcMMO, WorldGuard, WorldEdit, Vault, Essentials]
+commands:
+  botbridge:
+    description: BotBridge admin commands (status, reconnect)
+    usage: /<command> [status|reconnect]
+    permission: botbridge.admin

@@ -1,0 +1,10 @@
+{
+  "_comment": "Fallback for bots/agent/factionRules.js when <MC_SERVER_DIR>/mstore/factions_mconf/instance.json cannot be read. These are the values of the tracked server/mstore/factions_mconf/instance.json (Massive Factions 2.8.5); keep them in step when you change the server's config. econCostCreate is FACTION_CREATE_COST in factionRules.js.",
+  "defaultPlayerPower": 0.0,
+  "powerPerHour": 2.0,
+  "powerMax": 10.0,
+  "powerPerDeath": -2.0,
+  "claimsMustBeConnected": true,
+  "homesMustBeInClaimedTerritory": true,
+  "factionMemberLimit": 0
+}

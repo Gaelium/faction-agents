@@ -1,0 +1,56 @@
+{
+  "id": "wheat_farm_small",
+  "name": "Small Wheat Farm",
+  "category": "farm",
+  "tier_min": 1,
+  "tier_max": 2,
+  "archetypes": [
+    "farmer",
+    "builder"
+  ],
+  "placement": "surface",
+  "dimensions": {
+    "x": 7,
+    "y": 1,
+    "z": 8
+  },
+  "description": "Fenced 4x6 farmland patch with a 1-block water channel down the middle. A fence gate in the middle of the south side lets the bot in; sow with the farm tool.",
+  "materials": {
+    "fence": 25,
+    "farmland": 24,
+    "water": 6,
+    "fence_gate": 1
+  },
+  "substitutions": {
+    "fence": [
+      "wooden_fence"
+    ],
+    "farmland": [
+      "dirt",
+      "grass"
+    ],
+    "water": [],
+    "fence_gate": []
+  },
+  "token_map": {
+    ".": null,
+    "F": "fence",
+    "d": "farmland",
+    "w": "water",
+    "G": "fence_gate"
+  },
+  "layers": [
+    [
+      "FFFFFFF",
+      "FddwddF",
+      "FddwddF",
+      "FddwddF",
+      "FddwddF",
+      "FddwddF",
+      "FddwddF",
+      "FFFGFFF"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": []
+}

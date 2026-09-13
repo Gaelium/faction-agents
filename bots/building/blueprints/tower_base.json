@@ -1,0 +1,85 @@
+{
+  "id": "tower_base",
+  "name": "Tower Base",
+  "category": "base",
+  "tier_min": 2,
+  "tier_max": 3,
+  "archetypes": ["builder"],
+  "placement": "surface",
+  "dimensions": { "x": 5, "y": 6, "z": 5 },
+  "description": "5x5 two-story tower. Cobble walls, planks second floor, glass-pane windows on the upper level, ladder between floors, chests on top.",
+  "materials": {
+    "cobblestone": 93,
+    "planks": 25,
+    "wooden_door": 1,
+    "glass_pane": 4,
+    "ladder": 2,
+    "chest": 2,
+    "torch": 2
+  },
+  "substitutions": {
+    "cobblestone": ["stone", "mossy_cobblestone"],
+    "planks": ["wood", "log"],
+    "glass_pane": ["glass"]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "P": "planks",
+    "D": "wooden_door",
+    "G": "glass_pane"
+  },
+  "layers": [
+    [
+      "CCCCC",
+      "CCCCC",
+      "CCCCC",
+      "CCCCC",
+      "CCCCC"
+    ],
+    [
+      "CCCCC",
+      "C...C",
+      "D...C",
+      "C...C",
+      "CCCCC"
+    ],
+    [
+      "CCCCC",
+      "C...C",
+      "C...C",
+      "C...C",
+      "CCCCC"
+    ],
+    [
+      "PPPPP",
+      "PPPPP",
+      "PPPPP",
+      "PPPPP",
+      "PPPPP"
+    ],
+    [
+      "CCGCC",
+      "C...C",
+      "G...G",
+      "C...C",
+      "CCGCC"
+    ],
+    [
+      "CCCCC",
+      "CCCCC",
+      "CCCCC",
+      "CCCCC",
+      "CCCCC"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    { "token": "ladder", "offset": { "x": 3, "y": 1, "z": 3 } },
+    { "token": "ladder", "offset": { "x": 3, "y": 2, "z": 3 } },
+    { "token": "chest", "offset": { "x": 1, "y": 4, "z": 3 } },
+    { "token": "chest", "offset": { "x": 3, "y": 4, "z": 1 } },
+    { "token": "torch", "offset": { "x": 1, "y": 2, "z": 1 } },
+    { "token": "torch", "offset": { "x": 3, "y": 4, "z": 3 } }
+  ]
+}

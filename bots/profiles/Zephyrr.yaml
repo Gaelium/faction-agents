@@ -1,0 +1,54 @@
+username: Zephyrr
+archetype: pvper
+rank: default
+skill_tier: 3
+
+backstory: >
+  Been PvPing since the mcPVP days. Thinks potpvp is "barely a skill"
+  but plays it anyway. Condescending but knows what they're doing.
+
+voice:
+  tone: cocky
+  greeting: "whos queued"
+  catchphrases: ["child", "absolutely not", "predictable"]
+  typo_rate: 0.01
+  caps_when_tilted: 0.15
+  signature_rate: 0.20
+  punctuation: minimal
+
+values:
+  risk_tolerance: 0.7
+  social_preference: 0.4
+  material_greed: 0.3
+  loyalty: 0.5
+  curiosity: 0.3
+
+ambition: 0.7
+faction_preferences:
+  style: one-word-greek
+  themes: ["zephyr", "wind", "apex"]
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+redis: { host: localhost, port: 6379 }
+spawn: { x: 0, y: 64, z: 0 }
+
+schedule:
+  primary_hours: [21, 26]     # late-night grinder (wraps past midnight)
+  secondary_hours: [16, 19]
+  session_minutes: [60, 180]
+  weekend_boost: true
+
+combat:
+  reaction_ms_min: 250
+  reaction_ms_max: 400
+  aim_error_deg: 3.0
+  cps: 8
+  block_hit_rate: 0.45
+  pot_at_hp: 14
+  pot_success_rate: 0.75
+  combo_follow_rate: 0.70
+  flee_at_hp: 6
+  preferred_weapon: sword

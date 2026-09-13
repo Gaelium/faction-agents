@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Factions Fleet</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface: #fcfcfb; --surface-2: #f3f2ef; --surface-3: #e9e8e3; --line: #e2e1dc; --line-strong: #cfcdc6;
+    --text: #0b0b0b; --text-2: #52514e; --text-3: #8a8985;
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7; --s8: #e34948;
+    --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+    --good-bg: #e3f5e3; --warning-bg: #fff1cf; --critical-bg: #fbe1e1; --info-bg: #e2eefb;
+    --accent: #2a78d6; --radius: 10px; --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --surface: #1a1a19; --surface-2: #222220; --surface-3: #2b2b28; --line: #33332f; --line-strong: #45443f;
+      --text: #ffffff; --text-2: #c3c2b7; --text-3: #8e8d85;
+      --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+      --good-bg: #163a16; --warning-bg: #3d3010; --critical-bg: #3f1b1b; --info-bg: #1b2d44; --accent: #3987e5;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface: #1a1a19; --surface-2: #222220; --surface-3: #2b2b28; --line: #33332f; --line-strong: #45443f;
+    --text: #ffffff; --text-2: #c3c2b7; --text-3: #8e8d85;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+    --good-bg: #163a16; --warning-bg: #3d3010; --critical-bg: #3f1b1b; --info-bg: #1b2d44; --accent: #3987e5;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--surface); color: var(--text); font: 14px/1.45 -apple-system, "Segoe UI", Inter, Roboto, sans-serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1600px; margin: 0 auto; padding: 16px 20px 40px; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px; margin-bottom: 14px; }
+  header h1 { font-size: 20px; margin: 0; letter-spacing: .01em; }
+  .meta { color: var(--text-2); font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--text-3); margin-right: 5px; vertical-align: 1px; }
+  .dot.on { background: var(--good); } .dot.off { background: var(--critical); } .dot.warn { background: var(--warning); }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .kpi { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px 8px; min-height: 74px; position: relative; }
+  .kpi .label { color: var(--text-2); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  .kpi .value { font-size: 24px; font-weight: 600; line-height: 1.2; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .kpi .sub { color: var(--text-3); font-size: 12px; margin-top: 2px; }
+  .kpi svg { position: absolute; right: 10px; bottom: 8px; }
+  .bar { height: 6px; background: var(--surface-3); border-radius: 3px; overflow: hidden; margin-top: 6px; }
+  .bar > i { display: block; height: 100%; background: var(--good); border-radius: 3px; }
+  .bar > i.warn { background: var(--warning); } .bar > i.over { background: var(--critical); }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(360px, .95fr); gap: 16px; align-items: start; }
+  @media (max-width: 1100px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 16px; }
+  .card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-2); margin: 0 0 8px; display: flex; align-items: center; gap: 10px; }
+  .card h2 .spacer { flex: 1; }
+  .card h2 button { font: inherit; font-size: 12px; text-transform: none; letter-spacing: 0; color: var(--text-2); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+  .card h2 button[aria-pressed="true"] { background: var(--info-bg); color: var(--text); }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-3); font-weight: 500; padding: 4px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  td.num, th.num { text-align: right; }
+  tr.bot { cursor: pointer; }
+  tr.bot:hover { background: var(--surface-3); }
+  tr.bot.selected { background: var(--info-bg); }
+  tr.bot.offline td { color: var(--text-3); }
+  .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 7px; vertical-align: -1px; }
+  .name { font-weight: 600; color: var(--text); white-space: nowrap; }
+  .muted { color: var(--text-3); }
+  .focus-cell { max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-2); }
+  .pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--surface-3); color: var(--text); white-space: nowrap; }
+  .pill.ok { background: var(--good-bg); } .pill.failed { background: var(--critical-bg); } .pill.interrupted, .pill.partial { background: var(--warning-bg); }
+  .pill.online { background: var(--good-bg); } .pill.live { background: var(--info-bg); } .pill.offline { background: var(--surface-3); color: var(--text-2); }
+  .tool { font-family: var(--mono); font-size: 12.5px; }
+  .chart { position: relative; }
+  .chart svg { width: 100%; height: 240px; display: block; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--text-2); margin: 4px 0 2px; }
+  .legend span::before { content: ""; display: inline-block; width: 12px; height: 3px; border-radius: 2px; background: var(--c); margin-right: 6px; vertical-align: 3px; }
+  .tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; padding: 6px 9px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.12); display: none; min-width: 150px; z-index: 2; }
+  .tip .t { color: var(--text-3); margin-bottom: 3px; }
+  .tip .r { display: flex; justify-content: space-between; gap: 12px; }
+  .tip .r b { font-variant-numeric: tabular-nums; }
+  .feed { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+  .feed li { padding: 4px 0; border-bottom: 1px solid var(--line); display: flex; gap: 10px; }
+  .feed li:last-child { border-bottom: 0; }
+  .feed time { color: var(--text-3); font-variant-numeric: tabular-nums; flex: 0 0 auto; }
+  .feed .who { font-weight: 600; flex: 0 0 auto; }
+  .detail { position: sticky; top: 12px; }
+  .detail h3 { margin: 0; font-size: 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .detail .line { color: var(--text-2); font-size: 13px; margin: 6px 0; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .detail section { margin-top: 14px; }
+  .detail section h4 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-2); display: flex; gap: 8px; align-items: baseline; }
+  .detail section h4 small { text-transform: none; letter-spacing: 0; color: var(--text-3); font-weight: 400; }
+  .focus { background: var(--surface); border-left: 3px solid var(--accent); padding: 8px 10px; border-radius: 0 6px 6px 0; }
+  pre.goals { margin: 0; white-space: pre-wrap; font: 12.5px/1.5 var(--mono); background: var(--surface); padding: 8px 10px; border-radius: 6px; max-height: 220px; overflow: auto; }
+  .activity td { padding: 3px 6px; font-size: 12.5px; }
+  .activity time { color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .activity .why { color: var(--text-2); }
+  .empty { color: var(--text-3); font-style: italic; }
+  .hint { color: var(--text-3); font-size: 12px; margin-top: 10px; }
+  .scroll { max-height: 260px; overflow: auto; }
+  kbd { font: 11px var(--mono); background: var(--surface-3); border: 1px solid var(--line-strong); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AI Factions fleet</h1>
+    <div class="meta" id="meta"></div>
+  </header>
+  <div class="kpis" id="kpis"></div>
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h2>Bots <span class="muted" id="botcount"></span><span class="spacer"></span><span class="hint" style="margin:0"><kbd>↑</kbd><kbd>↓</kbd> select · <kbd>esc</kbd> clear</span></h2>
+        <div style="overflow-x:auto"><table id="bots"><thead><tr>
+          <th>Bot</th><th>Status</th><th>Faction</th><th class="num">Up</th><th class="num">$</th><th class="num">$/h</th><th class="num">Turns/h</th><th class="num">Tools</th><th class="num">Deaths</th><th>Last tool</th><th>Focus</th>
+        </tr></thead><tbody></tbody></table></div>
+      </div>
+      <div class="card chart" id="chartcard">
+        <h2>Cost this session <span class="muted" id="chartsub"></span><span class="spacer"></span><button id="tablebtn" aria-pressed="false">Table</button></h2>
+        <div class="legend" id="legend"></div>
+        <svg id="chart" role="img" aria-label="Cost per bot over time"></svg>
+        <div id="charttable" hidden></div>
+        <div class="tip" id="tip"></div>
+      </div>
+      <div class="card"><h2>Events</h2><ul class="feed scroll" id="events"></ul></div>
+      <div class="card"><h2>Chat</h2><ul class="feed scroll" id="chat"></ul></div>
+      <div class="card" id="crashcard" hidden><h2>Crashes</h2><ul class="feed" id="crashes"></ul></div>
+    </div>
+    <div class="card detail" id="detail"></div>
+  </div>
+</div>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const SERIES = ['--s1', '--s2', '--s3', '--s4', '--s5', '--s6', '--s7', '--s8'];
+  const state = { fleet: null, selected: null, bot: null, table: false, botOrder: [] };
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  // ---------- helpers ----------
+  const el = (tag, attrs = {}, ...kids) => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v === undefined || v === null) continue;
+      if (k === 'class') n.className = v; else if (k === 'style') n.style.cssText = v; else if (k.startsWith('on')) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v);
+    }
+    for (const kid of kids.flat()) { if (kid === null || kid === undefined) continue; n.append(kid.nodeType ? kid : document.createTextNode(String(kid))); }
+    return n;
+  };
+  const svgEl = (tag, attrs = {}) => { const n = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const [k, v] of Object.entries(attrs)) if (v != null) n.setAttribute(k, v); return n; };
+  const money = (n, d = 2) => '$' + (Number(n) || 0).toFixed(d);
+  const pad2 = (n) => String(n).padStart(2, '0');
+  const clock = (ts, secs = false) => { if (!ts) return '–'; const d = new Date(ts); return `${pad2(d.getHours())}:${pad2(d.getMinutes())}${secs ? ':' + pad2(d.getSeconds()) : ''}`; };
+  const dur = (ms) => { const s = Math.max(0, Math.floor(ms / 1000)); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60); return h ? `${h}h ${pad2(m)}m` : `${m}m ${pad2(s % 60)}s`; };
+  const ago = (ts) => { if (!ts) return ''; const s = Math.max(0, (Date.now() - ts) / 1000); return s < 60 ? `${Math.round(s)}s ago` : s < 3600 ? `${Math.round(s / 60)}m ago` : `${(s / 3600).toFixed(1)}h ago`; };
+  const secs = (ms) => ms == null ? '' : ms >= 60000 ? `${Math.round(ms / 60000)}m` : `${Math.round(ms / 1000)}s`;
+  const colorOf = (user) => { let i = state.botOrder.indexOf(user); if (i < 0) { state.botOrder.push(user); i = state.botOrder.length - 1; } return SERIES[Math.min(i, SERIES.length - 1)]; };
+  const pill = (kind, label) => { const icon = { ok: '✓', failed: '✕', interrupted: '⚡', partial: '◐', online: '●', live: '◉', offline: '○' }[kind] ?? ''; return el('span', { class: `pill ${kind}` }, icon, ' ', label ?? kind); };
+  const clear = (n) => { while (n.firstChild) n.removeChild(n.firstChild); return n; };
+
+  // ---------- header + KPIs ----------
+  function renderHeader(f) {
+    const m = clear($('meta'));
+    const online = f.online; const target = f.target ? `${f.target[0]}${f.target[1] !== f.target[0] ? '–' + f.target[1] : ''}` : '';
+    m.append(el('span', {}, el('i', { class: 'dot ' + (online ? 'on' : 'off') }), `${online}${target ? ' / ' + target : ''} online`));
+    m.append(el('span', {}, `up ${dur(f.at - f.orchestratorStart)}`));
+    if (f.mode === 'orchestrator') m.append(el('span', {}, el('i', { class: 'dot ' + (f.redis ? 'on' : f.redis === false ? 'off' : 'warn') }), `redis ${f.redis ? 'ok' : f.redis === false ? 'down' : '?'}`));
+    else m.append(el('span', {}, el('i', { class: 'dot warn' }), 'standalone, read-only'));
+    m.append(el('span', { class: 'muted' }, `updated ${clock(f.at, true)}`));
+    const k = clear($('kpis'));
+    const t = f.totals; const b = f.budget;
+    const kpi = (label, value, sub, extra) => { const n = el('div', { class: 'kpi' }, el('div', { class: 'label' }, label), el('div', { class: 'value' }, value), sub ? el('div', { class: 'sub' }, sub) : null); if (extra) n.append(extra); return n; };
+    const fleetSpark = sparkline(f.series.map(([ts, usd]) => [ts, usd]), css('--s1'), 90, 26);
+    k.append(kpi('Session cost', money(t.usd), `${money(t.usdPerH)}/h across the fleet`, fleetSpark));
+    if (b) {
+      const pct = b.perDay ? Math.min(100, Math.round((b.spent24h / b.perDay) * 100)) : null;
+      const bar = b.perDay ? el('div', { class: 'bar' }, el('i', { class: pct >= 100 ? 'over' : pct >= 80 ? 'warn' : '', style: `width:${pct}%` })) : null;
+      k.append(kpi('Last 24 h', money(b.spent24h), b.perDay ? `${b.paused ? 'PAUSED at ' : 'budget '}${money(b.perDay, 0)}/day (${pct}%)` : 'no budget set', bar));
+      if (b.projectedPerDay != null) k.append(kpi('Projected', `${money(b.projectedPerDay, 0)}/day`, 'at the current rate'));
+    }
+    const hours = Math.max((f.at - f.orchestratorStart) / 3.6e6, 1 / 60);
+    const liveBots = f.bots.filter((x) => x.online || x.live);
+    const turnsPerH = liveBots.length ? liveBots.reduce((a, x) => a + x.turnsPerH, 0) / liveBots.length : 0;
+    k.append(kpi('Turns / h', Math.round(turnsPerH), 'per online bot (lower is cheaper)'));
+    const okPct = t.toolCalls ? Math.round((f.bots.reduce((a, x) => a + x.toolsOk, 0) / t.toolCalls) * 100) : 0;
+    k.append(kpi('Tools', `${t.toolCalls}`, `${okPct}% ok · ${f.bots.reduce((a, x) => a + x.interrupts, 0)} interrupted`));
+    k.append(kpi('Deaths', String(t.deaths), 'this session'));
+    k.append(kpi('Scripts', String(t.scripts), `${f.bots.reduce((a, x) => a + (x.scripts?.saved ?? 0), 0)} skills saved`));
+  }
+
+  // ---------- bot table ----------
+  function renderBots(f) {
+    const tb = clear($('bots').querySelector('tbody'));
+    $('botcount').textContent = `(${f.bots.length})`;
+    for (const b of f.bots) {
+      const c = css(colorOf(b.user));
+      const status = b.online ? pill('online', 'online') : b.live ? pill('live', 'active') : pill('offline', 'offline');
+      const last = b.lastTool ? el('span', { class: 'tool' }, `${b.lastTool.summary} `, pill(b.lastTool.status, `${b.lastTool.status}${b.lastTool.elapsed_ms >= 1000 ? ' ' + secs(b.lastTool.elapsed_ms) : ''}`)) : el('span', { class: 'muted' }, b.online ? 'starting…' : '–');
+      const tr = el('tr', { class: `bot${state.selected === b.user ? ' selected' : ''}${!b.online && !b.live ? ' offline' : ''}`, onclick: () => select(b.user), tabindex: 0, 'data-user': b.user },
+        el('td', {}, el('span', { class: 'swatch', style: `background:${c}` }), el('span', { class: 'name' }, b.user), el('div', { class: 'muted', style: 'font-size:11px' }, b.archetype ?? '')),
+        el('td', {}, status),
+        el('td', {}, b.faction ?? el('span', { class: 'muted' }, '–')),
+        el('td', { class: 'num' }, b.online || b.live ? dur(b.upMs) : el('span', { class: 'muted' }, ago(b.lastTs))),
+        el('td', { class: 'num' }, money(b.usd)),
+        el('td', { class: 'num' }, money(b.usdPerH)),
+        el('td', { class: 'num' }, String(Math.round(b.turnsPerH))),
+        el('td', { class: 'num' }, `${b.toolsOk}/${b.tools}`),
+        el('td', { class: 'num' }, String(b.deaths)),
+        el('td', {}, last),
+        el('td', { class: 'focus-cell', title: b.focus ?? '' }, b.focus ?? el('span', { class: 'muted' }, '–')),
+      );
+      tb.append(tr);
+    }
+    if (!f.bots.length) tb.append(el('tr', {}, el('td', { colspan: 11, class: 'empty' }, 'no bots yet')));
+  }
+
+  // ---------- chart ----------
+  function sparkline(points, color, w, h) {
+    const svg = svgEl('svg', { width: w, height: h, viewBox: `0 0 ${w} ${h}`, 'aria-hidden': 'true' });
+    if (points.length < 2) return svg;
+    const xs = points.map((p) => p[0]), ys = points.map((p) => p[1]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y1 = Math.max(...ys, 0.01);
+    const X = (x) => x1 === x0 ? w : ((x - x0) / (x1 - x0)) * (w - 4) + 2;
+    const Y = (y) => h - 2 - (y / y1) * (h - 4);
+    svg.append(svgEl('path', { d: points.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(' '), fill: 'none', stroke: color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    return svg;
+  }
+
+  function renderChart(f) {
+    const svg = $('chart');
+    clear(svg);
+    const bots = f.bots.filter((b) => b.series && b.series.length >= 1);
+    const shown = bots.slice(0, 8);
+    $('chartsub').textContent = shown.length ? `${shown.length} bot${shown.length > 1 ? 's' : ''}` : '';
+    const legend = clear($('legend'));
+    for (const b of shown) legend.append(el('span', { style: `--c:${css(colorOf(b.user))}` }, `${b.user} ${money(b.usd)}`));
+    if (state.table) { renderChartTable(shown); return; }
+    const W = svg.clientWidth || 700, H = 240, padL = 44, padR = 90, padT = 12, padB = 26;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const all = shown.flatMap((b) => b.series);
+    if (all.length < 2) { svg.append(Object.assign(svgEl('text', { x: W / 2, y: H / 2, 'text-anchor': 'middle', fill: css('--text-3'), 'font-size': 13 }), { textContent: 'cost samples appear after the first minute' })); return; }
+    const x0 = Math.min(...all.map((p) => p[0])), x1 = Math.max(f.at, ...all.map((p) => p[0]));
+    const yMax = Math.max(0.05, ...all.map((p) => p[1])) * 1.08;
+    const X = (t) => padL + ((t - x0) / Math.max(1, x1 - x0)) * (W - padL - padR);
+    const Y = (v) => padT + (1 - v / yMax) * (H - padT - padB);
+    // gridlines: hairline, recessive; y ticks at clean steps
+    const step = niceStep(yMax / 4);
+    for (let v = 0; v <= yMax; v += step) {
+      svg.append(svgEl('line', { x1: padL, x2: W - padR, y1: Y(v), y2: Y(v), stroke: css('--line'), 'stroke-width': 1 }));
+      svg.append(Object.assign(svgEl('text', { x: padL - 6, y: Y(v) + 4, 'text-anchor': 'end', fill: css('--text-3'), 'font-size': 11 }), { textContent: money(v, step < 0.1 ? 2 : 1) }));
+    }
+    for (let i = 0; i <= 4; i++) { const t = x0 + ((x1 - x0) * i) / 4; svg.append(Object.assign(svgEl('text', { x: X(t), y: H - 8, 'text-anchor': 'middle', fill: css('--text-3'), 'font-size': 11 }), { textContent: clock(t) })); }
+    const ring = css('--surface-2');
+    shown.forEach((b) => {
+      const color = css(colorOf(b.user));
+      const pts = b.series;
+      const d = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(' ');
+      svg.append(svgEl('path', { d, fill: 'none', stroke: color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+      const last = pts[pts.length - 1];
+      svg.append(svgEl('circle', { cx: X(last[0]), cy: Y(last[1]), r: 4, fill: color, stroke: ring, 'stroke-width': 2 }));
+      svg.append(Object.assign(svgEl('text', { x: X(last[0]) + 8, y: Y(last[1]) + 4, fill: css('--text-2'), 'font-size': 11 }), { textContent: `${b.user} ${money(last[1])}` }));
+    });
+    // crosshair + tooltip
+    const hair = svgEl('line', { y1: padT, y2: H - padB, stroke: css('--line-strong'), 'stroke-width': 1, visibility: 'hidden' });
+    svg.append(hair);
+    const hit = svgEl('rect', { x: padL, y: 0, width: W - padL - padR, height: H, fill: 'transparent' });
+    svg.append(hit);
+    const tip = $('tip');
+    const move = (ev) => {
+      const r = svg.getBoundingClientRect();
+      const px = (ev.clientX - r.left) * (W / r.width);
+      const t = x0 + ((px - padL) / (W - padL - padR)) * (x1 - x0);
+      hair.setAttribute('x1', px); hair.setAttribute('x2', px); hair.setAttribute('visibility', 'visible');
+      const rows = shown.map((b) => { let best = b.series[0]; for (const p of b.series) if (Math.abs(p[0] - t) < Math.abs(best[0] - t)) best = p; return { user: b.user, usd: best[1], turns: best[2], color: css(colorOf(b.user)) }; }).sort((a, b) => b.usd - a.usd);
+      clear(tip);
+      tip.append(el('div', { class: 't' }, clock(t, true)));
+      for (const row of rows) tip.append(el('div', { class: 'r' }, el('span', {}, el('span', { class: 'swatch', style: `background:${row.color}` }), row.user), el('b', {}, `${money(row.usd)}`, el('span', { class: 'muted' }, ` · ${row.turns} turns`))));
+      tip.style.display = 'block';
+      const card = $('chartcard').getBoundingClientRect();
+      const left = ev.clientX - card.left + 14; tip.style.left = Math.min(left, card.width - tip.offsetWidth - 10) + 'px'; tip.style.top = (ev.clientY - card.top + 10) + 'px';
+    };
+    hit.addEventListener('pointermove', move);
+    hit.addEventListener('pointerleave', () => { tip.style.display = 'none'; hair.setAttribute('visibility', 'hidden'); });
+  }
+  function niceStep(raw) { const p = Math.pow(10, Math.floor(Math.log10(raw))); const m = raw / p; return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p; }
+  function renderChartTable(shown) {
+    const box = clear($('charttable'));
+    const t = el('table', {}, el('thead', {}, el('tr', {}, el('th', {}, 'Bot'), el('th', { class: 'num' }, '$ now'), el('th', { class: 'num' }, '$/h'), el('th', { class: 'num' }, 'Turns'), el('th', {}, 'Last sample'))));
+    const tb = el('tbody');
+    for (const b of shown) { const last = b.series[b.series.length - 1]; tb.append(el('tr', {}, el('td', {}, el('span', { class: 'swatch', style: `background:${css(colorOf(b.user))}` }), b.user), el('td', { class: 'num' }, money(b.usd)), el('td', { class: 'num' }, money(b.usdPerH)), el('td', { class: 'num' }, String(b.turns)), el('td', {}, last ? clock(last[0], true) : '–'))); }
+    t.append(tb); box.append(t);
+  }
+
+  // ---------- feeds ----------
+  function renderFeeds(f) {
+    const ev = clear($('events'));
+    if (!f.events.length) ev.append(el('li', { class: 'empty' }, 'nothing yet'));
+    for (const e of f.events.slice(0, 25)) ev.append(el('li', {}, el('time', {}, clock(e.ts)), el('span', { class: 'who' }, el('span', { class: 'swatch', style: `background:${css(colorOf(e.user))}` }), e.user), el('span', {}, e.text)));
+    const ch = clear($('chat'));
+    if (!f.chat.length) ch.append(el('li', { class: 'empty' }, 'silent'));
+    for (const c of f.chat.slice(0, 25)) ch.append(el('li', {}, el('time', {}, clock(c.ts)), el('span', { class: 'who' }, c.from, c.channel === 'private' ? ' (msg)' : ''), el('span', {}, c.text)));
+    $('crashcard').hidden = !f.crashes.length;
+    const cr = clear($('crashes'));
+    for (const c of f.crashes) cr.append(el('li', {}, el('time', {}, clock(c.ts)), el('span', { class: 'who' }, c.user), el('span', {}, `exit ${c.signal ? 'signal ' + c.signal : 'code ' + c.code}${c.retries != null ? ` (${c.retries} crashes)` : ''}`)));
+  }
+
+  // ---------- detail ----------
+  function renderDetail() {
+    const d = clear($('detail'));
+    if (!state.selected) {
+      d.append(el('h2', {}, 'Bot'), el('p', { class: 'empty' }, 'Select a bot to see its focus, goals, journal and everything it has done.'), el('p', { class: 'hint' }, 'Goals come from the bot’s own plans.md and journal.md; the activity list is its transcript.'));
+      return;
+    }
+    const b = state.bot;
+    if (!b) { d.append(el('h3', {}, state.selected), el('p', { class: 'empty' }, 'loading…')); return; }
+    const c = css(colorOf(b.user));
+    d.append(el('h3', {}, el('span', { class: 'swatch', style: `background:${c};width:12px;height:12px` }), b.user, b.online ? pill('online', 'online') : b.live ? pill('live', 'active') : pill('offline', 'offline'), el('span', { class: 'muted', style: 'font-size:13px;font-weight:400' }, `${b.archetype ?? ''}${b.tier != null ? ' · tier ' + b.tier : ''}`)));
+    d.append(el('div', { class: 'line' }, el('span', {}, `${b.model ?? '?'} / ${b.effort ?? '?'}`), el('span', {}, b.online || b.live ? `up ${dur(b.upMs)}` : `last seen ${clock(b.lastTs)} (${ago(b.lastTs)})`), el('span', {}, `session ${money(b.usd)} (${money(b.usdPerH)}/h)`), b.pastUsd ? el('span', {}, `earlier ${money(b.pastUsd)}`) : null));
+    d.append(el('div', { class: 'line' }, el('span', {}, `${b.turns} turns (${Math.round(b.turnsPerH)}/h)`), el('span', {}, `${b.tools} tools: ${b.toolsOk} ok, ${b.toolsFailed} failed, ${b.interrupts} interrupted`), el('span', {}, `${b.deaths} deaths`), el('span', {}, `${b.contextEdits} context edits`)));
+    d.append(el('div', { class: 'line' }, el('span', {}, `faction ${b.faction ?? '–'}`), el('span', {}, `home ${b.home ? `${b.home.x},${b.home.y},${b.home.z}` : '–'}`), el('span', {}, `money ${b.money != null ? money(b.money, 0) : '?'}`), el('span', {}, `scripts ${b.scripts.run} run (${b.scripts.ok} ok), skills ${b.scripts.saved} saved / ${b.scripts.used} used`)));
+    const sec = (title, small, ...kids) => el('section', {}, el('h4', {}, title, small ? el('small', {}, small) : null), ...kids);
+    d.append(sec('Focus', b.focusAt ? `set ${clock(b.focusAt)}` : 'from last login', el('div', { class: 'focus' }, b.focus ?? el('span', { class: 'empty' }, 'none yet'))));
+    d.append(sec('Standing goals', 'plans.md', b.goals.plans.length ? el('pre', { class: 'goals' }, b.goals.plans.join('\n')) : el('div', { class: 'empty' }, 'none written yet')));
+    d.append(sec('Journal', 'latest last', b.goals.journal.length ? el('pre', { class: 'goals' }, b.goals.journal.join('\n')) : el('div', { class: 'empty' }, 'empty')));
+    const act = el('table', { class: 'activity' }, el('tbody'));
+    const tools = b.recentTools.slice(-25).reverse();
+    for (const t of tools) act.querySelector('tbody').append(el('tr', {}, el('td', {}, el('time', {}, clock(t.ts, true))), el('td', { class: 'tool' }, t.summary), el('td', {}, pill(t.status, t.status), t.status !== 'ok' && (t.reason || t.by) ? el('span', { class: 'why' }, ` ${t.reason ?? ''}${t.by ? ' by ' + t.by : ''}`) : null), el('td', { class: 'num muted' }, t.elapsed_ms >= 1000 ? secs(t.elapsed_ms) : '')));
+    d.append(sec('Recent activity', 'latest first', tools.length ? el('div', { class: 'scroll' }, act) : el('div', { class: 'empty' }, 'nothing yet')));
+    const th = el('ul', { class: 'feed' }); for (const t of b.recentThoughts.slice(-6).reverse()) th.append(el('li', {}, el('time', {}, clock(t.ts, true)), el('span', {}, t.text)));
+    d.append(sec('Thoughts', null, b.recentThoughts.length ? th : el('div', { class: 'empty' }, 'none')));
+    const ev = el('ul', { class: 'feed' }); for (const e of b.recentEvents.slice(-10).reverse()) ev.append(el('li', {}, el('time', {}, clock(e.ts, true)), el('span', {}, e.text)));
+    d.append(sec('Events', null, b.recentEvents.length ? ev : el('div', { class: 'empty' }, 'none')));
+    const chat = el('ul', { class: 'feed' }); for (const c of b.recentChat.slice(-10).reverse()) chat.append(el('li', {}, el('time', {}, clock(c.ts, true)), el('span', { class: 'who' }, c.dir === 'out' ? `${b.user} → ${c.to ?? 'public'}` : `<${c.from}>`), el('span', {}, c.text)));
+    d.append(sec('Chat', null, b.recentChat.length ? chat : el('div', { class: 'empty' }, 'silent')));
+  }
+
+  // ---------- state ----------
+  async function select(user) {
+    state.selected = user; state.bot = null;
+    location.hash = user ? `bot=${encodeURIComponent(user)}` : '';
+    renderDetail();
+    if (state.fleet) renderBots(state.fleet);
+    if (user) await loadBot();
+  }
+  async function loadBot() {
+    if (!state.selected) return;
+    try { const r = await fetch(`/api/bot/${encodeURIComponent(state.selected)}`); if (r.ok) { state.bot = await r.json(); renderDetail(); } } catch {}
+  }
+  async function loadFleet() {
+    try {
+      const r = await fetch('/api/fleet'); if (!r.ok) return;
+      state.fleet = await r.json();
+      for (const b of state.fleet.bots) colorOf(b.user);
+      renderHeader(state.fleet); renderBots(state.fleet); renderChart(state.fleet); renderFeeds(state.fleet);
+      if (!state.selected) renderDetail();
+    } catch (e) { $('meta').textContent = 'connection lost: ' + e.message; }
+  }
+  document.addEventListener('keydown', (ev) => {
+    if (!state.fleet) return;
+    const names = state.fleet.bots.map((b) => b.user);
+    const i = names.indexOf(state.selected);
+    if (ev.key === 'ArrowDown') { ev.preventDefault(); select(names[Math.min(names.length - 1, i + 1)] ?? null); }
+    else if (ev.key === 'ArrowUp') { ev.preventDefault(); select(names[Math.max(0, i - 1)] ?? null); }
+    else if (ev.key === 'Escape') select(null);
+  });
+  $('tablebtn').addEventListener('click', () => { state.table = !state.table; $('tablebtn').setAttribute('aria-pressed', String(state.table)); $('charttable').hidden = !state.table; $('chart').style.display = state.table ? 'none' : ''; if (state.fleet) renderChart(state.fleet); });
+  window.addEventListener('resize', () => { if (state.fleet) renderChart(state.fleet); });
+  const m = /bot=([^&]+)/.exec(location.hash); if (m) state.selected = decodeURIComponent(m[1]);
+  loadFleet().then(() => loadBot());
+  setInterval(loadFleet, 2000);
+  setInterval(loadBot, 2000);
+})();
+</script>
+</body>
+</html>

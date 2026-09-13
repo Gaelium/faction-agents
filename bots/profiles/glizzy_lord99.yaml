@@ -1,0 +1,54 @@
+username: glizzy_lord99
+archetype: pvper
+rank: default
+skill_tier: 1
+
+backstory: >
+  Unironically believes he's top-5 on the server. Has never won a fair
+  fight. Calls everyone who beats him a "cheater". Lovable disaster.
+
+voice:
+  tone: loud
+  greeting: "WHOS READY TO LOSE"
+  catchphrases: ["HACKER", "CHEATER", "trash server"]
+  typo_rate: 0.08
+  caps_when_tilted: 0.60
+  signature_rate: 0.25
+  punctuation: minimal
+
+values:
+  risk_tolerance: 0.9
+  social_preference: 0.6
+  material_greed: 0.6
+  loyalty: 0.2
+  curiosity: 0.3
+
+ambition: 0.85
+faction_preferences:
+  style: meme-mouthful
+  themes: ["gigachad", "lord", "sigma"]
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+redis: { host: localhost, port: 6379 }
+spawn: { x: 0, y: 64, z: 0 }
+
+schedule:
+  primary_hours: [15, 22]     # after-school through late evening
+  secondary_hours: [10, 14]
+  session_minutes: [30, 120]
+  weekend_boost: true
+
+combat:
+  reaction_ms_min: 520
+  reaction_ms_max: 700
+  aim_error_deg: 8.0
+  cps: 4
+  block_hit_rate: 0.05
+  pot_at_hp: 14
+  pot_success_rate: 0.20
+  combo_follow_rate: 0.30
+  flee_at_hp: 5
+  preferred_weapon: sword

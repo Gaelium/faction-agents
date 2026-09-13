@@ -1,0 +1,410 @@
+{
+  "id": "sugarcane_farm_t3",
+  "name": "Sugarcane Channel Rows",
+  "category": "farm",
+  "tier_min": 3,
+  "tier_max": 3,
+  "archetypes": [
+    "farmer"
+  ],
+  "placement": "surface",
+  "dimensions": {
+    "x": 20,
+    "y": 2,
+    "z": 8
+  },
+  "description": "20×2×8 surface sugarcane farm with double water channels.",
+  "materials": {
+    "sand": 40,
+    "water": 40,
+    "dirt": 60,
+    "sugar_cane": 40,
+    "torch": 4
+  },
+  "substitutions": {
+    "water": []
+  },
+  "token_map": {
+    ".": null,
+    "d": "dirt",
+    "A": "sand",
+    "W": "water"
+  },
+  "layers": [
+    [
+      "dddddddddddddddddddd",
+      "AAAAAAAAAAAAAAAAAAAA",
+      "WWWWWWWWWWWWWWWWWWWW",
+      "dddddddddddddddddddd",
+      "WWWWWWWWWWWWWWWWWWWW",
+      "AAAAAAAAAAAAAAAAAAAA",
+      "....................",
+      "dddddddddddddddddddd"
+    ],
+    [
+      "....................",
+      "....................",
+      "....................",
+      "....................",
+      "....................",
+      "....................",
+      "....................",
+      "...................."
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 0,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 10,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 10,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 11,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 12,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 12,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 13,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 13,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 14,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 14,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 15,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 15,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 16,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 16,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 17,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 17,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 18,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 18,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 19,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "sugar_cane",
+      "offset": {
+        "x": 19,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 12,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 17,
+        "y": 1,
+        "z": 3
+      }
+    }
+  ]
+}

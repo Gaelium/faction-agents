@@ -1,0 +1,71 @@
+{
+  "id": "storage_room",
+  "name": "Storage Room",
+  "category": "storage",
+  "tier_min": 2,
+  "tier_max": 3,
+  "archetypes": ["builder", "pvper", "farmer", "grinder", "ratter", "diplomat"],
+  "placement": "surface",
+  "dimensions": { "x": 5, "y": 4, "z": 5 },
+  "description": "3x3 interior storage room with six chests around the walls and torches at corners.",
+  "materials": {
+    "cobblestone": 56,
+    "planks": 25,
+    "wooden_door": 1,
+    "chest": 6,
+    "torch": 4
+  },
+  "substitutions": {
+    "cobblestone": ["stone", "mossy_cobblestone"],
+    "planks": ["wood", "log"]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "P": "planks",
+    "D": "wooden_door"
+  },
+  "layers": [
+    [
+      "CCCCC",
+      "CCCCC",
+      "CCCCC",
+      "CCCCC",
+      "CCCCC"
+    ],
+    [
+      "CCCCC",
+      "C...C",
+      "C...C",
+      "C...C",
+      "CCDCC"
+    ],
+    [
+      "CCCCC",
+      "C...C",
+      "C...C",
+      "C...C",
+      "CCCCC"
+    ],
+    [
+      "PPPPP",
+      "PPPPP",
+      "PPPPP",
+      "PPPPP",
+      "PPPPP"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    { "token": "chest", "offset": { "x": 1, "y": 1, "z": 1 } },
+    { "token": "chest", "offset": { "x": 2, "y": 1, "z": 1 } },
+    { "token": "chest", "offset": { "x": 3, "y": 1, "z": 1 } },
+    { "token": "chest", "offset": { "x": 1, "y": 1, "z": 2 } },
+    { "token": "chest", "offset": { "x": 3, "y": 1, "z": 2 } },
+    { "token": "chest", "offset": { "x": 1, "y": 1, "z": 3 } },
+    { "token": "torch", "offset": { "x": 1, "y": 2, "z": 1 } },
+    { "token": "torch", "offset": { "x": 3, "y": 2, "z": 1 } },
+    { "token": "torch", "offset": { "x": 1, "y": 2, "z": 3 } },
+    { "token": "torch", "offset": { "x": 3, "y": 2, "z": 3 } }
+  ]
+}

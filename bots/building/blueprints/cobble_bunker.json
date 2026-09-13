@@ -1,0 +1,87 @@
+{
+  "id": "cobble_bunker",
+  "name": "Cobble Bunker",
+  "category": "base",
+  "tier_min": 2,
+  "tier_max": 3,
+  "archetypes": ["builder", "pvper", "grinder"],
+  "placement": "surface",
+  "dimensions": { "x": 7, "y": 5, "z": 7 },
+  "description": "Reinforced bunker. Three-block-high cobble walls for kb resistance, planks roof, full furnace+chest+table loadout.",
+  "materials": {
+    "cobblestone": 120,
+    "planks": 49,
+    "wooden_door": 1,
+    "chest": 1,
+    "crafting_table": 1,
+    "furnace": 1,
+    "torch": 4
+  },
+  "substitutions": {
+    "cobblestone": ["stone", "mossy_cobblestone"],
+    "planks": ["wood", "log"]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "P": "planks",
+    "D": "wooden_door"
+  },
+  "layers": [
+    [
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC",
+      "CCCCCCC"
+    ],
+    [
+      "CCCCCCC",
+      "C.....C",
+      "C.....C",
+      "D.....C",
+      "C.....C",
+      "C.....C",
+      "CCCCCCC"
+    ],
+    [
+      "CCCCCCC",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "CCCCCCC"
+    ],
+    [
+      "CCCCCCC",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "C.....C",
+      "CCCCCCC"
+    ],
+    [
+      "PPPPPPP",
+      "PPPPPPP",
+      "PPPPPPP",
+      "PPPPPPP",
+      "PPPPPPP",
+      "PPPPPPP",
+      "PPPPPPP"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    { "token": "chest", "offset": { "x": 1, "y": 1, "z": 5 } },
+    { "token": "crafting_table", "offset": { "x": 5, "y": 1, "z": 5 } },
+    { "token": "furnace", "offset": { "x": 3, "y": 1, "z": 5 } },
+    { "token": "torch", "offset": { "x": 1, "y": 2, "z": 1 } },
+    { "token": "torch", "offset": { "x": 5, "y": 2, "z": 1 } },
+    { "token": "torch", "offset": { "x": 1, "y": 3, "z": 5 } },
+    { "token": "torch", "offset": { "x": 5, "y": 3, "z": 5 } }
+  ]
+}

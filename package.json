@@ -1,0 +1,35 @@
+{
+  "name": "faction-agents",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gaelium/faction-agents.git"
+  },
+  "type": "module",
+  "description": "AI-populated Minecraft 1.8.9 factions server: LLM-driven bots (bots/), a fleet orchestrator (orchestrator/) and the BotBridge Paper plugin (server/BotBridge).",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "test": "node scripts/test_all.js",
+    "bot": "node --env-file=.env bots/agent/main.js",
+    "fleet": "node --env-file=.env orchestrator/index.js",
+    "web": "node orchestrator/web.js",
+    "dead-code": "node scripts/dead_code.mjs",
+    "docs": "node scripts/gen_docs.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.90.0",
+    "better-sqlite3": "^12.9.0",
+    "ioredis": "^5.4.1",
+    "js-yaml": "^4.1.0",
+    "mineflayer": "^4.20.1",
+    "mineflayer-armor-manager": "^2.0.1",
+    "mineflayer-auto-eat": "^5.0.3",
+    "mineflayer-collectblock": "^1.6.0",
+    "mineflayer-pathfinder": "^2.4.5",
+    "vec3": "^0.1.10"
+  }
+}

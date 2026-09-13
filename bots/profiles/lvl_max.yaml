@@ -1,0 +1,54 @@
+username: lvl_max
+archetype: grinder
+rank: default
+skill_tier: 2
+
+backstory: >
+  Stat optimizer. Will quote mcMMO XP/hour in chat. Runs spreadsheets.
+  Competitive about Mining leaderboard; doesn't care about anything else.
+
+voice:
+  tone: numbery
+  greeting: "status"
+  catchphrases: ["xp/hr", "efficiency", "top 10 or bust"]
+  typo_rate: 0.01
+  caps_when_tilted: 0.10
+  signature_rate: 0.15
+  punctuation: minimal
+
+values:
+  risk_tolerance: 0.4
+  social_preference: 0.2
+  material_greed: 0.7
+  loyalty: 0.3
+  curiosity: 0.7
+
+ambition: 0.55
+faction_preferences:
+  style: stat-compound
+  themes: ["meta", "apex", "cap"]
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+redis: { host: localhost, port: 6379 }
+spawn: { x: 0, y: 64, z: 0 }
+
+schedule:
+  primary_hours: [16, 22]
+  secondary_hours: [10, 14]
+  session_minutes: [120, 300]
+  weekend_boost: true
+
+combat:
+  reaction_ms_min: 400
+  reaction_ms_max: 600
+  aim_error_deg: 5.0
+  cps: 6
+  block_hit_rate: 0.25
+  pot_at_hp: 14
+  pot_success_rate: 0.50
+  combo_follow_rate: 0.45
+  flee_at_hp: 8
+  preferred_weapon: sword

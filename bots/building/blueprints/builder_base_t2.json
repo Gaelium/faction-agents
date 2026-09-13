@@ -1,0 +1,193 @@
+{
+  "id": "builder_base_t2",
+  "name": "Buried Cobble Box",
+  "category": "base",
+  "tier_min": 2,
+  "tier_max": 2,
+  "archetypes": [
+    "builder"
+  ],
+  "placement": "underground",
+  "dimensions": {
+    "x": 9,
+    "y": 5,
+    "z": 9
+  },
+  "description": "9×5×9 buried cobble bunker with iron door, double furnace, anvil and chest row.",
+  "materials": {
+    "cobblestone": 256,
+    "iron_door": 1,
+    "chest": 4,
+    "crafting_table": 1,
+    "furnace": 1,
+    "anvil": 1,
+    "torch": 5
+  },
+  "substitutions": {
+    "cobblestone": [
+      "stone",
+      "mossy_cobblestone"
+    ]
+  },
+  "token_map": {
+    ".": null,
+    "C": "cobblestone",
+    "I": "iron_door"
+  },
+  "layers": [
+    [
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC"
+    ],
+    [
+      "CCCCICCCC",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "CCCCCCCCC"
+    ],
+    [
+      "CCCC.CCCC",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "CCCCCCCCC"
+    ],
+    [
+      "CCCCCCCCC",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "C.......C",
+      "CCCCCCCCC"
+    ],
+    [
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "chest",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "token": "crafting_table",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "furnace",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "token": "anvil",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 3,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 3,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 4,
+        "y": 3,
+        "z": 4
+      }
+    }
+  ]
+}

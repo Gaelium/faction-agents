@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.aifactions</groupId>
+  <artifactId>botbridge</artifactId>
+  <version>0.1.0</version>
+  <packaging>jar</packaging>
+  <name>BotBridge</name>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>spigot-snapshots</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+    <repository>
+      <id>sonatype</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>
+    <repository>
+      <id>codemc</id>
+      <url>https://repo.codemc.io/repository/maven-public/</url>
+    </repository>
+  </repositories>
+
+  <!--
+    Only the Spigot API and Jedis come from a Maven repository. The six
+    plugin APIs below are `system` scoped because 1.8-era builds of them are
+    not on any public repository: they are read straight from the jars in
+    ../plugins, with the exact filenames server/fetch-plugins.sh expects
+    (see server/README.md for where each jar comes from). Compile-time only:
+    plugin.yml lists them as softdepend and BotBridge runs without any of them.
+  -->
+  <dependencies>
+    <!-- Spigot 1.8.8 API (provided by server at runtime) -->
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+      <version>1.8.8-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Massive Factions + MassiveCore (compile-time only; soft-depend at runtime) -->
+    <dependency>
+      <groupId>com.massivecraft</groupId>
+      <artifactId>factions</artifactId>
+      <version>2.8.5</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../plugins/Factions.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.massivecraft</groupId>
+      <artifactId>massivecore</artifactId>
+      <version>2.8.5</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../plugins/MassiveCore.jar</systemPath>
+    </dependency>
+
+    <!-- mcMMO (soft-depend) -->
+    <dependency>
+      <groupId>com.gmail.nossr50</groupId>
+      <artifactId>mcmmo</artifactId>
+      <version>local</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../plugins/mcMMO-1.5.10.jar</systemPath>
+    </dependency>
+
+    <!-- WorldGuard + WorldEdit 6.x (soft-depend) -->
+    <dependency>
+      <groupId>com.sk89q</groupId>
+      <artifactId>worldguard</artifactId>
+      <version>6.1</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../plugins/worldguard-6.1.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.sk89q</groupId>
+      <artifactId>worldedit</artifactId>
+      <version>6.1.9</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../plugins/worldedit-bukkit-6.1.9.jar</systemPath>
+    </dependency>
+
+    <!-- Vault (soft-depend) -->
+    <dependency>
+      <groupId>net.milkbowl.vault</groupId>
+      <artifactId>vault</artifactId>
+      <version>1.7.3</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../plugins/Vault-1.7.3.jar</systemPath>
+    </dependency>
+
+    <!-- Jedis: the only remote dep. Shaded into final jar. -->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>3.10.0</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>BotBridge-${project.version}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.5.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals><goal>shade</goal></goals>
+            <configuration>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <minimizeJar>false</minimizeJar>
+              <artifactSet>
+                <includes>
+                  <include>redis.clients:jedis</include>
+                  <include>org.apache.commons:commons-pool2</include>
+                  <include>org.slf4j:slf4j-api</include>
+                  <include>com.google.code.gson:gson</include>
+                </includes>
+              </artifactSet>
+              <relocations>
+                <relocation>
+                  <pattern>redis.clients.jedis</pattern>
+                  <shadedPattern>com.aifactions.botbridge.lib.jedis</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.apache.commons.pool2</pattern>
+                  <shadedPattern>com.aifactions.botbridge.lib.pool2</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.slf4j</pattern>
+                  <shadedPattern>com.aifactions.botbridge.lib.slf4j</shadedPattern>
+                </relocation>
+              </relocations>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                    <exclude>META-INF/MANIFEST.MF</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

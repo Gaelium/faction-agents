@@ -1,0 +1,284 @@
+{
+  "id": "builder_base_t3",
+  "name": "Obsidian Bunker",
+  "category": "base",
+  "tier_min": 3,
+  "tier_max": 3,
+  "archetypes": [
+    "builder"
+  ],
+  "placement": "underground",
+  "dimensions": {
+    "x": 11,
+    "y": 6,
+    "z": 11
+  },
+  "description": "11×6×11 obsidian-shell bunker with hidden ladder shaft and water layer above the ceiling.",
+  "materials": {
+    "obsidian": 397,
+    "ladder": 5,
+    "chest": 8,
+    "crafting_table": 1,
+    "furnace": 2,
+    "brewing_stand": 1,
+    "enchanting_table": 1,
+    "torch": 8
+  },
+  "substitutions": {},
+  "token_map": {
+    ".": null,
+    "L": "ladder",
+    "O": "obsidian"
+  },
+  "layers": [
+    [
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOO",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "L.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "OOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOO",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "L.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "OOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOO",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "L.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "OOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOO",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "L.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "O.........O",
+      "OOOOOOOOOOO"
+    ],
+    [
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "LOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO",
+      "OOOOOOOOOOO"
+    ]
+  ],
+  "build_order": "bottom_up",
+  "interior": [
+    {
+      "token": "chest",
+      "offset": {
+        "x": 2,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 3,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 4,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 8,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "token": "chest",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "token": "crafting_table",
+      "offset": {
+        "x": 5,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "furnace",
+      "offset": {
+        "x": 6,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "furnace",
+      "offset": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "brewing_stand",
+      "offset": {
+        "x": 9,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "enchanting_table",
+      "offset": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 2,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 8,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 2,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 8,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 4,
+        "z": 5
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 5,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "token": "torch",
+      "offset": {
+        "x": 2,
+        "y": 4,
+        "z": 5
+      }
+    }
+  ]
+}

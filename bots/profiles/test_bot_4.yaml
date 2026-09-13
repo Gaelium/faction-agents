@@ -1,0 +1,66 @@
+username: TestBot4
+archetype: farmer
+rank: default
+skill_tier: 1
+
+ambition: 0.25
+faction_preferences:
+  style: wholesome-two-words
+  themes: ["harvest", "meadow", "field"]
+
+voice:
+  tone: friendly
+  greeting: "yo"
+  catchphrases:
+    - "selling wheat"
+    - "farm life"
+    - "need food?"
+  typo_rate: 0.02
+  caps_when_tilted: 0.08
+  signature_rate: 0.20
+  punctuation: minimal
+
+host: localhost
+port: 25565
+version: "1.8.9"
+auth: offline
+
+redis:
+  host: localhost
+  port: 6379
+
+spawn:
+  x: 0
+  y: 64
+  z: 0
+
+# Farmer — also a non-PvPer. Defends briefly, flees quickly.
+backstory: >
+  Friendly neighborhood farmer. Keeps the server's bread economy
+  running. Never starts a fight but will defend the fields with a
+  surprising grudge-holding streak.
+
+values:
+  risk_tolerance: 0.2
+  social_preference: 0.75
+  material_greed: 0.5
+  loyalty: 0.9
+  curiosity: 0.4
+
+schedule:
+  primary_hours: [17, 21]
+  secondary_hours: [8, 12]
+  session_minutes: [45, 180]
+  weekend_boost: true
+
+combat:
+  reaction_ms_min: 500
+  reaction_ms_max: 800
+  aim_error_deg: 8.0
+  cps: 4
+  block_hit_rate: 0.10
+  pot_at_hp: 14
+  pot_success_rate: 0.35
+  combo_follow_rate: 0.20
+  flee_at_hp: 10
+  preferred_weapon: sword
