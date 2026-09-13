@@ -43,7 +43,7 @@ before running it.
 ```bash
 git clone https://github.com/Gaelium/faction-agents.git && cd faction-agents
 npm install             # one root package.json: bots + orchestrator + scripts
-npm test                # 28 suites, no server and no key needed
+npm test                # 29 suites, no server and no key needed
 ```
 
 `npm test` runs every `test_*.js` under `bots/`, `orchestrator/` and
@@ -73,7 +73,7 @@ touching Minecraft:
 node --env-file=.env bots/agent/smoke_gemini.js      # Gemini: one tool round trip, prints the cost (about $0.0003)
 ```
 
-There is no equivalent smoke for Anthropic; the first bot session (step 8)
+There is no equivalent smoke for Anthropic; the first bot session (step 5)
 fails within seconds with `ModelClient needs LLM_API_KEY or
 ANTHROPIC_API_KEY` if the key is missing.
 
@@ -89,20 +89,26 @@ play in.
 
 ```bash
 cd server
-./fetch-plugins.sh                # Paper 1.8.8 build 445, EssentialsX (+Chat, +Spawn), Vault, WorldEdit 6.1.9, latest LuckPerms
+./fetch-plugins.sh                # Paper 1.8.8 build 445, EssentialsX (+Chat, +Spawn), Vault, WorldEdit 6.1.9, WorldGuard 6.1, LuckPerms 5.4.145, mcMMO 1.5.00, CoreProtect 2.12.0
 ./fetch-plugins.sh --with-skins   # optional: SkinsRestorer, so bots get player skins
 ```
 
-The script then prints the jars you must download by hand, with the
-filenames to save them under in `server/plugins/`:
+About thirty megabytes, a few seconds on a good connection. Three versions
+are pinned on purpose: LuckPerms 5.4.145 is the last line compiled for
+Java 8 (the current 5.5 release fails to load on Paper 1.8.8 with
+`UnsupportedClassVersionError`); WorldGuard 6.1 is the last 1.8 build; and
+mcMMO Classic 1.5.00 is the last that enables on 1.8.8 (1.5.10 and later
+call 1.12's `NamespacedKey` and fail). dev.bukkit's file lists show newer
+versions first, so do not take the top entry if you download by hand.
+
+The script then prints the two jars nobody can script, because SpigotMC
+puts them behind a login; download them in a browser and save them under
+these names in `server/plugins/`:
 
 | Jar | Version | Where |
 |---|---|---|
 | `MassiveCore.jar` | 2.8.5 | [SpigotMC 1898](https://www.spigotmc.org/resources/massivecore.1898/) |
 | `Factions.jar` | 2.8.5 | [SpigotMC 1900](https://www.spigotmc.org/resources/factions.1900/) |
-| `worldguard-6.1.jar` | 6.1 | [dev.bukkit files](https://dev.bukkit.org/projects/worldguard/files), the 1.8 line |
-| `mcMMO-1.5.10.jar` | 1.5.10 (Classic) | build from [mcMMO-Classic](https://github.com/mcMMO-Dev/mcMMO-Classic) with `mvn package`, or [dev.bukkit files](https://dev.bukkit.org/projects/mcmmo/files) |
-| `CoreProtect_2.12.0.jar` | 2.12.0, optional | [dev.bukkit files](https://dev.bukkit.org/projects/coreprotect/files) |
 | `BotBridge-0.1.0.jar` | ours | the GitHub release, or build it (4b) |
 
 Filenames matter: `start.sh` expects the Paper jar name, and
@@ -153,8 +159,10 @@ BotBridge lines:
 ```
 
 `Redis ping failed` means Redis was not up; start it and type `botbridge
-reconnect` in the console. Leave the server running for the rest of this
-page.
+reconnect` in the console. mcMMO prints a handful of `Invalid Potion_Type`
+and `Invalid material` warnings because the tracked configs come from a
+newer build; they are harmless. Leave the server running for the rest of
+this page.
 
 ### 4d. Permissions
 
@@ -184,6 +192,11 @@ lp group default permission set essentials.sethome true
 lp group default permission set essentials.back true
 lp group default permission set essentials.tp.others true
 ```
+
+LuckPerms runs console commands one after another and can drop some when
+a whole block is pasted at once, so finish with `lp listgroups` and
+`lp group default permission info` and re-enter anything missing (eleven
+nodes on `default`, one each on `vip` and `mvp`).
 
 What each is for: the kit nodes for `/kit starter` at login (both
 spellings, Essentials versions differ); `balance`, `pay`, `sell`, `msg` for
@@ -219,6 +232,15 @@ redis-cli SUBSCRIBE mc:events
 Join with your client (`localhost:25565`, any username) and type in chat:
 a `{"event":"chat_message",…}` line appears. `botbridge status` in the
 console prints the Redis host, the channels and the last error.
+
+Without a client, prove the query side from a second terminal:
+
+```bash
+redis-cli SUBSCRIBE mc:responses &
+redis-cli PUBLISH mc:commands '{"type":"query_online","request_id":"setup-1"}'
+# → {"type":"online","request_id":"setup-1","ts":…,"players":[]}
+kill %1
+```
 
 ## 5. The first bot
 

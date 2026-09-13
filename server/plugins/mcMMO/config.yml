@@ -1,17 +1,14 @@
 #
 #  mcMMO configuration
-#  Last updated on 1.5.10-SNAPSHOT-b${BUILD_NUMBER}
+#  Last updated on 1.5.00-b3547
 #
 #####
-
 #
 #  Settings for mcMMO in general
 ###
 General:
     Locale: en_US
     MOTD_Enabled: true
-    # Send a message to the player when his profile was successfully loaded
-    Show_Profile_Loaded: false
     # Amount of time (in minutes) to wait between saves of player information
     Save_Interval: 10
     # Allow mcMMO to report on basic anonymous usage
@@ -20,43 +17,24 @@ General:
     Update_Check: true
     Prefer_Beta: false
     Power_Level_Cap: 0
-    # Should mcMMO truncate levels if you lower your max level cap for a skillname
-    TruncateSkills: false
     # Should mcMMO print out debug messages?
     Verbose_Logging: false
     # Should mcMMO over-write configs to update, or make new ones ending in .new?
     Config_Update_Overwrite: true
     # Play level-up sounds
     LevelUp_Sounds: true
-
-    # This should fix blocks being broken client side, but not server-side.
-    # Enable to refresh the chunks around a player at the end of Super Breaker,
-    # Giga Drill Breaker, and Berserk. Resource intensive for larger servers.
-    Refresh_Chunks: false
-
+    # Allow mcMMO to inform other plugins of damage being dealt
+    Event_Callback: true
 #
 #  Settings for the mcMMO scoreboards
 ###
 Scoreboard:
     # Display player's power levels below their names?
     Power_Level_Tags: false
-
     # Allow players to use "/mcscoreboard keep" to keep the scoreboard up
     Allow_Keep: true
-
-    # Show the /mcstats scoreboard automatically after logging in
-    Show_Stats_After_Login: false
-
-    # Show scoreboard tips 5 times. Tips are only displayed once for every login session.
-    # Set to 0 to never show these tips.
-    Tips_Amount: 5
-
     # Add some more color on the board :-)
     Rainbows: false
-
-    # Display ability names?
-    Ability_Names: true
-
     # Settings for each type of scoreboard
     # Print: Should the command output be printed in chat?
     # Board: Should the command output be displayed in the scoreboard sidebar?
@@ -95,20 +73,15 @@ Scoreboard:
         Skill:
             Board: true
             Display_Time: 30
-
             # Should the board be shown when a player levels up, and for how long?
             # It is recommended to NOT have LevelUp_Time be -1, as this may confuse players.
             LevelUp_Board: true
             LevelUp_Time: 5
-
 Mob_Healthbar:
-    # Enabled: Whether or not the feature is enabled at all
-    # Display_Type: Per player Default display for mob health bars - HEARTS, BAR, or DISABLED
+    # Display_Type: Default display for mob health bars - HEARTS, BAR, or DISABLED
     # Display_Time: Amount of time (in seconds) to display. To display permanently, set to -1
-    Enabled: true
     Display_Type: HEARTS
     Display_Time: 3
-
 Database_Purging:
     # Amount of time (in hours) to wait between database purging
     # To only run at server start, set to 0
@@ -117,19 +90,16 @@ Database_Purging:
     # Any user who hasn't connected in this many months will be purged from the database
     # To never purge old users, set to -1
     Old_User_Cutoff: 6
-
 #
 #  Settings for Backups
 #  Allow mcMMO to create zip backups for config files and flatfile data on shutdown.
 ###
 Backups:
     Enabled: true
-
     Keep:
         Last_24_Hours: true
         Daily_Last_Week: true
         Weekly_Past_Months: true
-
 #
 #  Settings for using a mySQL database
 ###
@@ -140,22 +110,10 @@ MySQL:
         User_Password: UserPassword
         Name: DataBaseName
         TablePrefix: mcmmo_
-        # This setting is the max simultaneous mysql connections allowed at a time, needs to be
-        # high enough to support multiple player logins in quick succession
-        MaxConnections:
-            Misc: 30
-            Load: 30
-            Save: 30
-        # This setting is the max size of the pool of cached connections that we hold available
-        # at any given time
-        MaxPoolSize:
-            Misc: 10
-            Load: 20
-            Save: 20
+        MaxConnections: {}
     Server:
         Port: 3306
         Address: localhost
-
 #
 #  Settings for Hardcore mode
 #  Players will not lose stats when their level is below the Level_Threshold
@@ -195,7 +153,6 @@ Hardcore:
             Taming: false
             Unarmed: false
             Woodcutting: false
-
 #
 #  Settings for SMP Mods
 ###
@@ -204,7 +161,6 @@ Mods:
     Armor_Mods_Enabled: false
     Block_Mods_Enabled: false
     Entity_Mods_Enabled: false
-
 #
 #  Settings for mcMMO items
 ###
@@ -215,16 +171,11 @@ Items:
         Warmup: 5
         RecentlyHurt_Cooldown: 60
         Prevent_Use_Underground: true
-        # Attempt to use the bed spawn, if one is available
-        Use_Bed_Spawn: true
         Use_Cost: 1
         Recipe_Cost: 5
         Item_Name: FEATHER
         Sound_Enabled: true
-    Flux_Pickaxe:
-        Enabled: true
-        Sound_Enabled: true
-
+    Flux_Pickaxe: {}
 #
 #  Settings for Parties
 ###
@@ -235,31 +186,26 @@ Party:
     AutoKick_Interval: 12
     # Any user who hasn't connected in this many days will get kicked from their party
     Old_Party_Member_Cutoff: 7
-
     # Settings for party share modes
     Sharing:
         ExpShare_bonus_base: 1.1
         ExpShare_bonus_increase: 1.05
         ExpShare_bonus_cap: 1.5
         Range: 75.0
-
     # Party members level up their party by earning individual experience
     # Newly created parties will not immediately have access to all the party features
     # and have to level up the party a bit before they can use them.
     Leveling:
         Level_Cap: 10
-
         # Uses the regular XP formula but is multiplied by <amount of party members> + <Xp_Curve_Modifier>
         Xp_Curve_Modifier: 3
         Near_Members_Needed: false
         Inform_All_Party_Members_On_LevelUp: false
-
         Chat_UnlockLevel: 1
         Teleport_UnlockLevel: 2
         Alliance_UnlockLevel: 5
         ItemShare_UnlockLevel: 8
         XpShare_UnlockLevel: 10
-
 #
 #  Settings for Abilities
 ###
@@ -291,7 +237,6 @@ Abilities:
     Tools:
         # Use more tool durability while using abilities. Set Durability_Loss to 0 to disable the extra durability damage.
         Durability_Loss: 1
-
 #
 #  Settings for Skills
 #  Level cap of 0 for no limit
@@ -309,11 +254,9 @@ Skills:
     Alchemy:
         # Allow Hoppers to transfer ingredients and brew Rank 1 Alchemy potions
         Enabled_for_Hoppers: true
-        # Prevent Hoppers from transferring ingredients into Brewing Stands
-        Prevent_Hopper_Transfer_Ingredients: false
-        # Prevent Hoppers from transferring bottles into Brewing Stands
-        Prevent_Hopper_Transfer_Bottles: false
         Level_Cap: 0
+        # Prevent Hoppers from transferring ingredients into Brewing Stands
+        Prevent_Hopper_Transfer: false
     Archery:
         Enabled_For_PVP: true
         Enabled_For_PVE: true
@@ -330,7 +273,6 @@ Skills:
         Override_Vanilla_Treasures: true
         # Always catch fish, even when treasure is found
         Extra_Fish: false
-        Lure_Modifier: 4.0
     Herbalism:
         Level_Cap: 0
         Prevent_AFK_Leveling: true
@@ -345,14 +287,9 @@ Skills:
         Anvil_Material: IRON_BLOCK
         # Ask for a confirmation when a player tries to repair an enchanted item
         Confirm_Required: true
-    Salvage:
-        Level_Cap: 0
-        Anvil_Messages: true
-        Anvil_Placed_Sounds: true
-        Anvil_Use_Sounds: true
-        Anvil_Material: GOLD_BLOCK
-        # Ask for a confirmation when a player tries to salvage an enchanted item
-        Confirm_Required: true
+        Salvage_tools: true
+        Salvage_Anvil_Material: GOLD_BLOCK
+        Salvage_armor: true
     Smelting:
         Level_Cap: 0
     Swords:
@@ -367,51 +304,35 @@ Skills:
             # Item_Material: Material of the item needed to summon the pet
             # Item_Amount: Amount of items required to summon the pet
             # Summon_Amount: Amount of pets to summon when using Call Of The Wild
-            # Summon_Length: Pets despawn when their summon life length expires
-            # Summon_Max_Amount: Maximum amount of pets that can be summoned at the same time
             Wolf:
                 Item_Material: BONE
                 Item_Amount: 10
                 Summon_Amount: 1
-                Summon_Length: 240
-                Summon_Max_Amount: 10
             Ocelot:
                 Item_Material: RAW_FISH
                 Item_Amount: 10
                 Summon_Amount: 1
-                Summon_Length: 240
-                Summon_Max_Amount: 10
             Horse:
                 Item_Material: APPLE
                 Item_Amount: 10
                 Summon_Amount: 1
-                Summon_Length: 240
-                Summon_Max_Amount: 10
-
             # Range to check for nearby pets when using Call Of The Wild, 0 will disable the check
             Range: 40.0
-
     Unarmed:
         Enabled_For_PVP: true
         Enabled_For_PVE: true
         Level_Cap: 0
         Block_Cracker:
             SmoothBrick_To_CrackedBrick: true
-        # When using Unarmed, picked up items will automatically get moved to a free slot instead of going in the slot
-        # of your hand. Should item pickup be disabled when your entire inventory - except for your hand - is full?
-        Item_Pickup_Disabled_Full_Inventory: true
-        # Any attacks made without a tool, i.e. with one's open hand, a block, etc., will count as unarmed. 
-        Items_As_Unarmed: false
     Woodcutting:
         Tree_Feller_Sounds: true
         Level_Cap: 0
-
+    Salvage: {}
 #
 #  Settings for Double Drops
 ###
 Double_Drops:
     Herbalism:
-        Beetroot_Block: true
         Brown_Mushroom: true
         Cactus: true
         Carrot: true
@@ -450,7 +371,6 @@ Double_Drops:
         Generic: true
         Jungle: true
         Redwood: true
-
 #
 #  Settings for commands
 ###
@@ -483,7 +403,6 @@ Commands:
     adminchat:
         Chat_Prefix_Format: '[[AQUA]][[[WHITE]]{0}[[AQUA]]]'
         Use_Display_Names: true
-
 #
 #  Settings for particles
 ###
@@ -491,25 +410,14 @@ Particles:
     # These settings determine if fireworks should get launched when a player activates/deactivates an ability
     Ability_Activation: true
     Ability_Deactivation: true
-
     # Determines if the fireworks should be a large ball or a small one
     LargeFireworks: true
-
-    # Use particle effect when these abilities trigger
     Bleed: true
+    # Use particle effect when these abilities trigger
     Dodge: true
-    Flux: true
     Greater_Impact: true
-    Call_of_the_Wild: true
-
     # These settings determine if fireworks should get launched when a player levels-up,
     # this will happen by default for every 100 levels.
     LevelUp_Enabled: true
     LevelUp_Tier: 100
-#
-#  Settings for sounds
-###
-Sounds:
-    # This setting controls the master volume. 1.0 is Max,  0 would be off
-    MasterVolume: 1.0
-    
+Sounds: {}

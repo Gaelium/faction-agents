@@ -46,30 +46,30 @@ public class BotBridgePlugin extends JavaPlugin {
         if (cfg.getBoolean("features.kit", true))    registerIf(pm, new KitListener(bus));
         if (cfg.getBoolean("features.economy", true)) registerIf(pm, new EconomyListener(bus));
 
-        if (cfg.getBoolean("features.zone", true) && pm.getPlugin("WorldGuard") != null) {
+        if (cfg.getBoolean("features.zone", true) && pm.isPluginEnabled("WorldGuard")) {
             registerIf(pm, new ZoneListener(this, bus, cfg.getLong("zone.check-interval-ms", 250L)));
         } else {
-            getLogger().info("WorldGuard not present; zone_enter disabled.");
+            getLogger().info("WorldGuard not enabled; zone_enter disabled.");
         }
 
-        if (cfg.getBoolean("features.mcmmo", true) && pm.getPlugin("mcMMO") != null) {
+        if (cfg.getBoolean("features.mcmmo", true) && pm.isPluginEnabled("mcMMO")) {
             try {
                 registerIf(pm, new McmmoListener(bus));
             } catch (Throwable t) {
                 getLogger().warning("mcMMO listener failed to register: " + t.getMessage());
             }
         } else {
-            getLogger().info("mcMMO not present; mcmmo_levelup disabled.");
+            getLogger().info("mcMMO not enabled; mcmmo_levelup disabled.");
         }
 
-        if (cfg.getBoolean("features.factions", true) && pm.getPlugin("Factions") != null) {
+        if (cfg.getBoolean("features.factions", true) && pm.isPluginEnabled("Factions")) {
             try {
                 registerIf(pm, new FactionsListener(bus));
             } catch (Throwable t) {
                 getLogger().warning("Factions listener failed to register: " + t.getMessage());
             }
         } else {
-            getLogger().info("Factions not present; faction_event disabled.");
+            getLogger().info("Factions not enabled; faction_event disabled.");
         }
 
         getLogger().info("BotBridge enabled.");

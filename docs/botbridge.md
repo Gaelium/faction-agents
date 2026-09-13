@@ -25,7 +25,7 @@ resolves the matching promise.
 Requirements: Java 8 (`JAVA_HOME` pointing at it; the compiler targets
 1.8), Maven 3, and the six plugin jars `pom.xml` reads with `system`
 scope from `../plugins`: `Factions.jar`, `MassiveCore.jar`,
-`mcMMO-1.5.10.jar`, `worldguard-6.1.jar`, `worldedit-bukkit-6.1.9.jar`,
+`mcMMO-1.5.00.jar`, `worldguard-6.1.jar`, `worldedit-bukkit-6.1.9.jar`,
 `Vault-1.7.3.jar` (`server/fetch-plugins.sh --check` tells you which are
 there). They are compile-time only: `plugin.yml` lists them as
 `softdepend` and the plugin runs without any of them. The Spigot API
@@ -73,7 +73,7 @@ zone:
 ```
 
 A feature whose plugin is not installed is skipped with a console line
-(`WorldGuard not present; zone_enter disabled.`) and everything else keeps
+(`WorldGuard not enabled; zone_enter disabled.`; a plugin that is installed but failed to enable counts as absent) and everything else keeps
 working. The bots read the same channel names from their profiles
 (`redis.channels`, defaults `mc:events`, `mc:commands`, `mc:responses`);
 change both or neither.
@@ -190,12 +190,12 @@ redis-cli PUBLISH mc:commands '{"type":"query_balance","player":"alice","request
 - **Plugin did not load.** `server/logs/latest.log`. Usual causes: the
   server runs on Java 9+ (must be Java 8), or a Factions/MassiveCore
   version other than 2.8.5.
-- **No `faction_event`.** `botbridge status` says `Factions not present`;
+- **No `faction_event`.** the boot log says `Factions not enabled`;
   both `Factions.jar` and `MassiveCore.jar` must load.
 - **No `zone_enter`.** WorldGuard 6.1 must be loaded (7.x does not run on
   1.8.8) and the player must cross a region border; moving inside a region
   does not repeat the event.
-- **No `mcmmo_levelup`.** mcMMO 1.5.10 (Classic) must be installed.
+- **No `mcmmo_levelup`.** mcMMO Classic 1.5.00 must be installed and enabled (1.5.10 and later fail to enable on 1.8.8).
 - **`query_balance` answers `no_economy`.** Vault found no economy
   provider: EssentialsX is missing or failed to enable.
 - **A bot's `board` lists everything under `unavailable`.** Its Redis

@@ -20,7 +20,7 @@ What is tracked here:
 | `mstore/factions_mconf/instance.json` | the Massive Factions rules the bots reason about |
 | `mstore/factions_mflag/`, `mstore/factions_mperm/`, `mstore/massivecore_*` | Factions flag and permission defaults, MassiveCore settings |
 | `BotBridge/` | our plugin: `pom.xml`, `src/`, [README](BotBridge/README.md) |
-| `fetch-plugins.sh` | downloads Paper and the scriptable plugins; `--with-skins`; `--check` reports what is present |
+| `fetch-plugins.sh` | downloads Paper and every plugin with a direct URL; `--with-skins`; `--check` reports what is present |
 
 Quick start once the jars are in place (`./fetch-plugins.sh --check` shows
 all ✓): `cp server.properties.example server.properties`, `./start.sh`, set

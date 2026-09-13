@@ -37,7 +37,7 @@ server/banned-*.json
 server/whitelist.json
 server/usercache.json
 server/ops.json
-server/eula.txt
+server/eula.txt*
 server/server.properties
 !server/server.properties.example
 
@@ -50,6 +50,7 @@ server/plugins/*/sessions/
 server/plugins/*/*.db
 server/plugins/*/*.sqlite
 server/plugins/update/
+server/plugins/Updater/
 server/plugins/CoreProtect/
 server/plugins/LuckPerms/
 server/plugins/PluginMetrics/

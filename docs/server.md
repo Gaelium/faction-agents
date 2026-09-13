@@ -36,11 +36,11 @@ the bridge.
 | EssentialsX Chat | 2.19.7 | `EssentialsXChat-2.19.7.jar` | same release | yes | chat formatting with faction tags |
 | EssentialsX Spawn | 2.19.7 | `EssentialsXSpawn-2.19.7.jar` | same release | yes | `/spawn`, `/setspawn`, `spawn.yml` |
 | Vault | 1.7.3 | `Vault-1.7.3.jar` | [GitHub release](https://github.com/MilkBowl/Vault/releases/tag/1.7.3) | yes | the economy API behind `query_balance` and `query_baltop`, Factions costs; *compile* |
-| LuckPerms | 5.4.145 (any 5.x) | `LuckPerms-Bukkit-<version>.jar` | [luckperms.net](https://luckperms.net/download) | yes, latest | permissions |
+| LuckPerms | 5.4.145 | `LuckPerms-Bukkit-5.4.145.jar` | [Modrinth v5.4.145-bukkit](https://modrinth.com/plugin/luckperms/version/v5.4.145-bukkit); 5.5+ is compiled for Java 17 and does not load on 1.8.8 | yes | permissions |
 | WorldEdit | 6.1.9 | `worldedit-bukkit-6.1.9.jar` | [dev.bukkit file 2597538](https://dev.bukkit.org/projects/worldedit/files/2597538) | yes | WorldGuard's dependency, the region wand; *compile* |
-| WorldGuard | 6.1 | `worldguard-6.1.jar` | [dev.bukkit files](https://dev.bukkit.org/projects/worldguard/files) | manual | the `spawn` region, `zone_enter`, `bots/world/zones.js`; *compile* |
-| mcMMO | 1.5.10 (Classic) | `mcMMO-1.5.10.jar` | [mcMMO-Classic](https://github.com/mcMMO-Dev/mcMMO-Classic) source or [dev.bukkit files](https://dev.bukkit.org/projects/mcmmo/files) | manual | `mcmmo_levelup`; *compile* |
-| CoreProtect | 2.12.0 | `CoreProtect_2.12.0.jar` | [dev.bukkit files](https://dev.bukkit.org/projects/coreprotect/files) | manual, optional | rollback of griefing for admins; nothing in the bots needs it |
+| WorldGuard | 6.1 | `worldguard-6.1.jar` | [dev.bukkit file 881691](https://dev.bukkit.org/projects/worldguard/files/881691) (the 1.8 line; the list shows 7.x first) | yes | the `spawn` region, `zone_enter`, `bots/world/zones.js`; *compile* |
+| mcMMO | 1.5.00 (Classic) | `mcMMO-1.5.00.jar` | [dev.bukkit file 781681](https://dev.bukkit.org/projects/mcmmo/files/781681); 1.5.10+ call 1.12's `NamespacedKey` and do not enable on 1.8.8 | yes | `mcmmo_levelup`; *compile* |
+| CoreProtect | 2.12.0 | `CoreProtect_2.12.0.jar` | [dev.bukkit file 886944](https://dev.bukkit.org/projects/coreprotect/files/886944) | yes, optional | rollback of griefing for admins; nothing in the bots needs it |
 | SkinsRestorer | 15.12.5 | `SkinsRestorer.jar` | [GitHub release](https://github.com/SkinsRestorer/SkinsRestorer/releases/tag/15.12.5) | `--with-skins`, optional | bots get a player's skin instead of Steve; its `config.yml` is tracked |
 
 EssentialsX, LuckPerms and Vault declare `api-version: 1.13` in their
