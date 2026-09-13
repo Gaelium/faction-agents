@@ -17,7 +17,7 @@ Put them in `.env` (loaded by `node --env-file=.env …`, see `.env.example`) or
 | `AGENT_EFFORT` | bot (`agent/model.js`) | `medium` | Thinking effort per turn: `low`, `medium` or `high`. On Gemini it becomes the thinking level unless `GEMINI_THINKING` overrides it. |
 | `AGENT_MAX_TURNS` | bot (`agent/loop.js`) | `600` | Turn ceiling per session; the loop ends with reason `max_turns`. |
 | `AGENT_MAX_USD` | bot (`agent/loop.js`) | `5` | Spend ceiling per bot session; the loop ends itself with reason `budget` when the running total reaches it. |
-| `AGENT_MODEL` | bot (`agent/main.js`, `agent/model.js`, `agent/smoke_gemini.js`) | `claude-opus-5` | Model for the agent loop. A `gemini-*` id routes every turn through the Gemini adapter (`bots/agent/gemini.js`); anything else goes to the Anthropic SDK. Also read by `smoke_gemini.js`. |
+| `AGENT_MODEL` | bot + orchestrator (`agent/main.js`, `agent/model.js`, `agent/smoke_gemini.js`, `index.js`) | `LLM_MODEL`, else `claude-opus-5` | Model for the agent loop. A `gemini-*` id routes every turn through the Gemini adapter (`bots/agent/gemini.js`); anything else goes to the Anthropic SDK. Setting `GEMINI_API_KEY` alone does nothing: this variable decides. Also read by `smoke_gemini.js`. |
 | `AGENT_STRATEGIST_EFFORT` | bot (`agent/main.js`) | `high` | Thinking effort for the strategist. |
 | `AGENT_STRATEGIST_MODEL` | bot (`agent/main.js`) | `claude-opus-5` | Model behind the `think` tool (the strategist memo). May be a Gemini id. |
 | `ANTHROPIC_API_KEY` | bot (`agent/model.js`) | — | Anthropic API key for every model turn when the model is a Claude model. Required unless `LLM_API_KEY` is set or every model is a Gemini one. |
@@ -30,7 +30,7 @@ Put them in `.env` (loaded by `node --env-file=.env …`, see `.env.example`) or
 | `GEMINI_THINKING` | bot (`agent/gemini.js`) | from `AGENT_EFFORT` | Gemini thinking level: `low`, `medium`, `high` or `off`. If the API rejects the field the adapter retries without it and logs `gemini_thinking_config_rejected`. |
 | `GOOGLE_API_KEY` | bot (`agent/gemini.js`) | — | Alternative name for `GEMINI_API_KEY`. |
 | `LLM_API_KEY` | bot (`agent/model.js`) | — | Alternative name for the Anthropic key; takes precedence over `ANTHROPIC_API_KEY`. |
-| `LLM_MODEL` | bot (`agent/main.js`, `agent/model.js`) | — | Fallback for `AGENT_MODEL` (older name); ignored when `AGENT_MODEL` is set. |
+| `LLM_MODEL` | bot + orchestrator (`agent/main.js`, `agent/model.js`, `index.js`) | — | Older name for `AGENT_MODEL`, used only when `AGENT_MODEL` is unset. An old `.env` that sets `LLM_MODEL` to a Claude model keeps the bots on Claude however many Gemini keys it also holds. |
 | `MC_SERVER_DIR` | bot (`agent/main.js`) | `<repo>/server` | The Paper server folder the bots read at boot: WorldGuard regions and the Factions board (protection zones), Essentials `worth.yml` (sell prices) and `mstore/factions_mconf/instance.json` (faction rules). See [server.md](server.md). |
 | `REDIS_HOST` | orchestrator (`index.js`) | `localhost` | Redis host for the orchestrator's chat feed. Each bot reads its own Redis host from its profile (`redis.host`), not from this variable. |
 | `REDIS_PORT` | orchestrator (`index.js`) | `6379` | Redis port for the orchestrator's chat feed (bots: profile `redis.port`). |

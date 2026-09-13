@@ -163,11 +163,12 @@ Walk to a position (pathfinding, digs through simple terrain when allowed; uses 
 
 ### leave_spawn
 
-Walk clear of the spawn protection zone (you cannot break or place blocks inside it, and digging is suppressed near its edge; you may spawn just outside the box but still within that margin). Picks an exit heading away from spawn and keeps walking until you are clear by a comfortable margin. Use this first after logging in at spawn.
+Walk clear of the spawn protection zone (you cannot break or place blocks inside it, and digging is suppressed near its edge; you may spawn just outside the box but still within that margin). Every bot has its own exit heading, so a fleet fans out around spawn instead of crowding one side; pass direction to choose a side yourself (for example towards your home). Keeps walking until you are clear by a comfortable margin. Use this first after logging in at spawn.
 
 | Input | Type | Constraints | Default | Required | Meaning |
 |---|---|---|---|---|---|
 | `margin` | integer | min 8, max 128 | `48` |  | how far past the boundary to get |
+| `direction` | one of `N`, `NE`, `E`, `SE`, `S`, `SW`, `W`, `NW` |  |  |  | which side of spawn to leave on; default: your own heading (reported as dir in the result) |
 | `timeout_s` | integer | min 30, max 300 | `150` |  |  |
 | `interrupt_on` | array of `damage`, `chat_mention`, `whisper`, `chat_any`, `mob_near`, `player_near`, `hunger` |  |  |  | Events that pull you out of this action early. Default: ["damage"]. Pass [] to stay heads-down. |
 

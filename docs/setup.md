@@ -62,7 +62,11 @@ Edit `.env`. One of the two model keys is required:
 
 - **Anthropic** (default): `ANTHROPIC_API_KEY=…`. The loop runs on
   `claude-opus-5` unless `AGENT_MODEL` says otherwise.
-- **Gemini**: `GEMINI_API_KEY=…` and `AGENT_MODEL=gemini-3.8-flash`.
+- **Gemini**: `GEMINI_API_KEY=…` **and** `AGENT_MODEL=gemini-3.8-flash`. The
+  key alone changes nothing: `AGENT_MODEL` decides, and an older `.env` that
+  sets `LLM_MODEL` to a Claude model keeps the bots on Claude until
+  `AGENT_MODEL` is set. The orchestrator prints `bots run on <model>` before
+  it spawns anything; the bots' first log line (`agent_boot`) names it too.
 
 Node loads the file with `--env-file=.env`; nothing else reads it, so keep
 it out of git (it is ignored). Every variable, its default and what reads
@@ -176,6 +180,7 @@ lp creategroup mvp
 lp group vip parent add default
 lp group mvp parent add vip
 
+lp group default permission set essentials.kit true
 lp group default permission set essentials.kits.starter true
 lp group default permission set essentials.kit.starter true
 lp group vip permission set essentials.kits.vip true
@@ -195,11 +200,13 @@ lp group default permission set essentials.tp.others true
 
 LuckPerms runs console commands one after another and can drop some when
 a whole block is pasted at once, so finish with `lp listgroups` and
-`lp group default permission info` and re-enter anything missing (eleven
+`lp group default permission info` and re-enter anything missing (twelve
 nodes on `default`, one each on `vip` and `mvp`).
 
-What each is for: the kit nodes for `/kit starter` at login (both
-spellings, Essentials versions differ); `balance`, `pay`, `sell`, `msg` for
+What each is for: `essentials.kit` is the `/kit` command itself (without
+it Essentials answers "You do not have access to that command") and the
+kit nodes allow the starter kit (both spellings, Essentials versions
+differ); `balance`, `pay`, `sell`, `msg` for
 the `board`, `pay`, `sell` and `say` tools; `spawn`, `home` and `sethome`
 for the `teleport` tool and `command sethome`; `back` and `tp.others` are
 the recovery commands the old README granted and cost nothing to keep.

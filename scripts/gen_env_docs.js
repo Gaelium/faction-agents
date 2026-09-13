@@ -26,8 +26,8 @@ const SCAN_DIRS = ['bots', 'orchestrator'];
 const NOTES = {
   ANTHROPIC_API_KEY: { default: '—', effect: 'Anthropic API key for every model turn when the model is a Claude model. Required unless `LLM_API_KEY` is set or every model is a Gemini one.' },
   LLM_API_KEY: { default: '—', effect: 'Alternative name for the Anthropic key; takes precedence over `ANTHROPIC_API_KEY`.' },
-  AGENT_MODEL: { default: '`claude-opus-5`', effect: 'Model for the agent loop. A `gemini-*` id routes every turn through the Gemini adapter (`bots/agent/gemini.js`); anything else goes to the Anthropic SDK. Also read by `smoke_gemini.js`.' },
-  LLM_MODEL: { default: '—', effect: 'Fallback for `AGENT_MODEL` (older name); ignored when `AGENT_MODEL` is set.' },
+  AGENT_MODEL: { default: '`LLM_MODEL`, else `claude-opus-5`', effect: 'Model for the agent loop. A `gemini-*` id routes every turn through the Gemini adapter (`bots/agent/gemini.js`); anything else goes to the Anthropic SDK. Setting `GEMINI_API_KEY` alone does nothing: this variable decides. Also read by `smoke_gemini.js`.' },
+  LLM_MODEL: { default: '—', effect: 'Older name for `AGENT_MODEL`, used only when `AGENT_MODEL` is unset. An old `.env` that sets `LLM_MODEL` to a Claude model keeps the bots on Claude however many Gemini keys it also holds.' },
   AGENT_EFFORT: { default: '`medium`', effect: 'Thinking effort per turn: `low`, `medium` or `high`. On Gemini it becomes the thinking level unless `GEMINI_THINKING` overrides it.' },
   AGENT_MAX_USD: { default: '`5`', effect: 'Spend ceiling per bot session; the loop ends itself with reason `budget` when the running total reaches it.' },
   AGENT_MAX_TURNS: { default: '`600`', effect: 'Turn ceiling per session; the loop ends with reason `max_turns`.' },

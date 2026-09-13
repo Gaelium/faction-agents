@@ -3,7 +3,7 @@
  * honor the cancel token by stopping the pathfinder.
  */
 
-import { isInProtectedZone, isNearProtectedZone, pushClearOfProtection } from '../../world/zones.js';
+import { isInProtectedZone, isNearProtectedZone, pushClearOfProtection, nearestProtectedZone, zoneCenter } from '../../world/zones.js';
 import { awaitHandle, cancellableSleep } from '../cancel.js';
 import { ok, fail, partial, interrupted, roundPos, distance, compassDir, toVec3 } from './result.js';
 
@@ -12,6 +12,35 @@ export const INTERRUPT_SCHEMA = {
   items: { type: 'string', enum: ['damage', 'chat_mention', 'whisper', 'chat_any', 'mob_near', 'player_near', 'hunger'] },
   description: 'Events that pull you out of this action early. Default: ["damage"]. Pass [] to stay heads-down.',
 };
+
+const COMPASS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+const COMPASS_DEG = { N: 0, NE: 45, E: 90, SE: 135, S: 180, SW: 225, W: 270, NW: 315 };
+
+/**
+ * A stable heading (degrees, 0 = north, 90 = east) derived from the bot's
+ * name, so a fleet that spawns on one block fans out instead of walking the
+ * same line to the same trees (ten bots ended a session within 40 blocks of
+ * each other on 2026-09-13).
+ */
+export function exitBearingFor(name) {
+  let h = 2166136261;
+  for (const ch of String(name ?? '')) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619) >>> 0; }
+  return h % 360;
+}
+export function bearingToCompass(deg) { return COMPASS[Math.round((((deg % 360) + 360) % 360) / 45) % 8]; }
+
+/** The first point along `deg` from the zone's centre that is clear of the margin; null when no zone is near. */
+function exitAlongBearing(here, deg, buffer) {
+  const zone = nearestProtectedZone(here, buffer);
+  if (!zone) return null;
+  const c = zoneCenter(zone);
+  const rad = (deg * Math.PI) / 180; const ux = Math.sin(rad); const uz = -Math.cos(rad);
+  for (let r = 8; r <= 640; r += 8) {
+    const p = { x: Math.round(c.x + ux * r), z: Math.round(c.z + uz * r) };
+    if (!isNearProtectedZone(p, buffer)) return p;
+  }
+  return null;
+}
 
 function surroundings(bot, pos) {
   if (!pos || typeof bot.blockAt !== 'function') return null;
@@ -94,21 +123,24 @@ export function moveTools(deps) {
 
   const leaveSpawn = {
     name: 'leave_spawn',
-    description: 'Walk clear of the spawn protection zone (you cannot break or place blocks inside it, and digging is suppressed near its edge; you may spawn just outside the box but still within that margin). Picks an exit heading away from spawn and keeps walking until you are clear by a comfortable margin. Use this first after logging in at spawn.',
+    description: 'Walk clear of the spawn protection zone (you cannot break or place blocks inside it, and digging is suppressed near its edge; you may spawn just outside the box but still within that margin). Every bot has its own exit heading, so a fleet fans out around spawn instead of crowding one side; pass direction to choose a side yourself (for example towards your home). Keeps walking until you are clear by a comfortable margin. Use this first after logging in at spawn.',
     input_schema: {
       type: 'object',
       properties: {
         margin: { type: 'integer', minimum: 8, maximum: 128, default: 48, description: 'how far past the boundary to get' },
+        direction: { type: 'string', enum: COMPASS, description: 'which side of spawn to leave on; default: your own heading (reported as dir in the result)' },
         timeout_s: { type: 'integer', minimum: 30, maximum: 300, default: 150 },
         interrupt_on: INTERRUPT_SCHEMA,
       },
       additionalProperties: false,
     },
     defaultInterrupts: ['damage'],
-    async handler({ margin = 48, timeout_s = 150 }, { cancel }) {
+    async handler({ margin = 48, timeout_s = 150, direction = null }, { cancel }) {
       const start = roundPos(bot.entity?.position);
       if (!start) return fail('no_position');
-      if (!isNearProtectedZone(start, margin)) return ok({ already_clear: true, pos: start });
+      const bearing = direction && COMPASS_DEG[direction] != null ? COMPASS_DEG[direction] : exitBearingFor(deps.profile?.username ?? bot.username);
+      const dir = bearingToCompass(bearing);
+      if (!isNearProtectedZone(start, margin)) return ok({ already_clear: true, pos: start, dir });
       const deadline = Date.now() + timeout_s * 1000;
       movement.setBootstrapMode?.(true);
       let attempts = 0; let last = null; let fails = 0;
@@ -116,7 +148,8 @@ export function moveTools(deps) {
         while (Date.now() < deadline && !cancel.cancelled) {
           const here = bot.entity?.position;
           if (!isNearProtectedZone(here, margin)) break;
-          const exit = pushClearOfProtection({ x: here.x, z: here.z }, margin + 16);
+          // Inside the zone: leave along this bot's heading so bots spread out. Only near it: straight out is shortest.
+          const exit = (isInProtectedZone(here) ? exitAlongBearing(here, bearing, margin + 16) : null) ?? pushClearOfProtection({ x: here.x, z: here.z }, margin + 16);
           if (Math.hypot(exit.x - here.x, exit.z - here.z) < 4) { last = { reached: false, reason: 'no_exit_target' }; break; }
           attempts += 1;
           const target = { x: exit.x, y: Math.round(here.y), z: exit.z };
@@ -136,7 +169,7 @@ export function moveTools(deps) {
       }
       const end = roundPos(bot.entity?.position);
       const clear = !isNearProtectedZone(end, margin);
-      const base = { pos: end, clear, attempts, moved: distance(start, end), still_inside: isInProtectedZone(end) };
+      const base = { pos: end, clear, dir, attempts, moved: distance(start, end), still_inside: isInProtectedZone(end) };
       if (cancel.cancelled) return interrupted(cancel, base);
       if (clear) {
         if (deps.state) deps.state.clearOfSpawn = end;

@@ -39,6 +39,7 @@ import { Transcript } from './transcript.js';
 import { AgentLoop } from './loop.js';
 import { buildSystemPrompt } from './prompt.js';
 import { createTools } from './tools/index.js';
+import { exitBearingFor, bearingToCompass } from './tools/move.js';
 import { readJournal, appendJournal } from './tools/mind.js';
 import { groupInventory } from './tools/perceive.js';
 import { registerBaseCells, refreshHomeCells, rotationTowardSpawn } from './tools/build.js';
@@ -233,7 +234,7 @@ function buildBootstrap({ bot, profile, actualSpawn, memoryStore, skillStore = n
     ? `Your memory files (memory tool): ${others.map((f) => `${f.path} (${f.bytes} B)`).join(', ')}. Read the ones that matter before you decide.`
     : 'No memory files yet besides the journal. Create /memories/plans.md, places.md and people.md as you learn things.');
   parts.push(`Inventory: ${JSON.stringify(groups)}`);
-  parts.push(`Spawn is at ${actualSpawn.x},${actualSpawn.y},${actualSpawn.z}${isInProtectedZone(actualSpawn) ? ' (inside protection)' : ''}.`);
+  parts.push(`Spawn is at ${actualSpawn.x},${actualSpawn.y},${actualSpawn.z}${isInProtectedZone(actualSpawn) ? ' (inside protection)' : ''}. Your side of spawn is ${bearingToCompass(exitBearingFor(profile.username))}: leave_spawn takes you out that way and other bots leave on other sides, so build and gather there unless you have a reason to go elsewhere.`);
   if (state.home) parts.push(`Your home (${state.home.blueprint ?? 'base'}) is at ${state.home.x},${state.home.y},${state.home.z}${state.home.chest ? `, chest at ${state.home.chest.x},${state.home.chest.y},${state.home.chest.z}` : ''}; goto named home walks you inside.`);
   if (state.faction) parts.push(`You are in the faction ${state.faction}. Read faction_notes when you have a moment.`);
   parts.push(`Money: about $${Math.round(factions.getBalance())} last time you checked (board gives the true figure).`);

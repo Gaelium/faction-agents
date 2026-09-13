@@ -134,6 +134,10 @@ const dashboard = NO_DASHBOARD ? null : new Dashboard({
   orchestratorStart, webUrl,
 });
 dashboard?.on('quit', () => shutdown('quit'));
+const botModel = process.env.AGENT_MODEL ?? process.env.LLM_MODEL ?? 'claude-opus-5';
+const botModelSource = process.env.AGENT_MODEL ? 'AGENT_MODEL' : (process.env.LLM_MODEL ? 'LLM_MODEL, the older name; set AGENT_MODEL to change it' : 'default');
+log.info('fleet_model', { model: botModel, source: botModelSource });
+if (NO_DASHBOARD) console.log(`bots run on ${botModel} (${botModelSource})`);
 if (NO_DASHBOARD && webUrl) console.log(`fleet web dashboard at ${webUrl}`);
 
 function writeStatus() {

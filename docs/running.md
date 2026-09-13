@@ -85,6 +85,8 @@ as a crash.
 
 ## The orchestrator
 
+Before it spawns anything the orchestrator prints `bots run on <model>` with the variable the model came from (`AGENT_MODEL`, the older `LLM_MODEL`, or the default) and logs it as `fleet_model`; check that line before letting a fleet run.
+
 ```bash
 npm run fleet                                            # every profile, 6–12 online by schedule
 npm run fleet -- --only Rook_Vantis,oatmeal_ollie --budget 15

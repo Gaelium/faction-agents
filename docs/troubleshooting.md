@@ -268,3 +268,40 @@ Per-model rates and what an hour costs are in [costs.md](costs.md).
 **Gemini costs as much per hour as Claude despite a lower token price.**
 It takes about twice the turns per hour, so the hourly figure comes out
 the same. `AGENT_EFFORT=low` and a lower `AGENT_MAX_TURNS` are the levers.
+
+## `/kit starter` answers "You do not have access to that command"
+
+**Cause.** The bot has the kit node (`essentials.kits.starter`) but not the
+command node `essentials.kit`; Essentials checks the command first. "That
+kit does not exist" means the kit node or the kit definition is missing
+instead.
+**What the code does.** The bot carries on without the kit (no tools, no
+armour); `wear_armor` reports nothing to wear and nothing retries.
+**Check.** `lp group default permission info` in the console must list
+`essentials.kit`, `essentials.kits.starter` and `essentials.kit.starter`;
+the full block is in [setup.md](setup.md#4d-permissions). `/kit` with no
+argument lists the kits the player may take.
+
+## The bots ran on Claude although `GEMINI_API_KEY` is set
+
+**Cause.** `AGENT_MODEL` decides the model; the key alone changes nothing,
+and an older `.env` that sets `LLM_MODEL` to a Claude model keeps the bots
+there.
+**What the code does.** The orchestrator prints `bots run on <model>
+(<which variable>)` before spawning and logs `fleet_model`; every bot's
+first log line, `agent_boot`, names its model.
+**Check.** `AGENT_MODEL=gemini-3.8-flash` in `.env` (and
+`AGENT_STRATEGIST_MODEL` if the `think` tool should stay on Gemini too);
+see [configuration.md](configuration.md).
+
+## Every bot walks the same way out of spawn
+
+**Cause.** They spawn on one block; the old exit pushed each straight away
+from the zone centre along the same vector, and they all scanned for the
+same nearest trees (ten bots ended a session within 40 blocks of each
+other).
+**What the code does.** `leave_spawn` walks each bot out on a heading
+derived from its name and reports it as `dir`; the login message tells the
+bot which side of spawn is its own; `direction` overrides it.
+**Check.** `leave_spawn_hop` in the bot log shows the target; the result's
+`dir` differs between bots.

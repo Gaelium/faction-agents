@@ -168,6 +168,16 @@ export function isNearProtectedZone(pos, buffer = 0) {
   return _zones.some((z) => insideZone(pos, z) || distanceToZone(pos, z) < buffer);
 }
 
+/** The zone `pos` is inside, else the nearest zone within `buffer` blocks, else null. */
+export function nearestProtectedZone(pos, buffer = 0) {
+  if (!pos || typeof pos.x !== 'number' || typeof pos.z !== 'number') return null;
+  const inside = _zones.find((z) => insideZone(pos, z));
+  if (inside) return inside;
+  let best = null;
+  for (const z of _zones) { const d = distanceToZone(pos, z); if (d < buffer && (!best || d < best.d)) best = { z, d }; }
+  return best?.z ?? null;
+}
+
 /** Return the first matching zone or null. */
 export function findProtectedZone(pos) {
   if (!pos || typeof pos.x !== 'number' || typeof pos.z !== 'number') return null;
@@ -240,7 +250,7 @@ export function pushOutsideProtection(pos, padding = 8) {
   return cur;
 }
 
-function zoneCenter(zone) {
+export function zoneCenter(zone) {
   if (zone.shape === 'circle') return { x: zone.center.x, z: zone.center.z };
   if (zone.shape === 'box') return { x: (zone.min.x + zone.max.x) / 2, z: (zone.min.z + zone.max.z) / 2 };
   if (zone.shape === 'chunks') return { x: zone.centroid.x, z: zone.centroid.z };

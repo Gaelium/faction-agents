@@ -807,6 +807,20 @@ function stubTools(extra = {}) {
   const leave = moveTools({ bot: lbot, movement: lmove, log: null, state: {} }).find((t) => t.name === 'leave_spawn');
   r = await leave.handler({ margin: 40, timeout_s: 30 }, { cancel: new CancelToken() });
   check(r.status === 'ok' && r.clear === true && hops === 1 && r.attempts === 1, `leave_spawn from just outside the box takes one real hop (${r.status} ${r.reason ?? ''} hops ${hops})`);
+  // From INSIDE the box every bot leaves on its own heading, so a fleet fans out; direction overrides it.
+  const { exitBearingFor, bearingToCompass } = await import('./tools/move.js');
+  const exitFor = async (username, input = {}) => {
+    const b = stubBot({ pos: { x: 400, y: 64, z: 220 } }); let target = null;
+    const mv = { setBootstrapMode() {}, goTo(pos) { target = { ...pos }; b.entity.position.x = pos.x; b.entity.position.z = pos.z; return { stop() {}, done: Promise.resolve({ reached: true }) }; }, cancel() {} };
+    const tool = moveTools({ bot: b, movement: mv, log: null, state: {}, profile: { username } }).find((t) => t.name === 'leave_spawn');
+    const res = await tool.handler({ margin: 40, timeout_s: 30, ...input }, { cancel: new CancelToken() });
+    return { res, target };
+  };
+  const a = await exitFor('Rook_Vantis'); const b2 = await exitFor('Zephyrr'); const e = await exitFor('Marla_K', { direction: 'E' });
+  check(a.res.status === 'ok' && a.res.clear && b2.res.status === 'ok' && b2.res.clear && Math.hypot(a.target.x - b2.target.x, a.target.z - b2.target.z) > 100,
+    `two bots inside the box leave on different headings (${a.res.dir} ${a.target.x},${a.target.z} vs ${b2.res.dir} ${b2.target.x},${b2.target.z})`);
+  check(e.res.status === 'ok' && e.res.dir === 'E' && e.target.x > 493 && Math.abs(e.target.z - 220) < 8 && !isNearProtectedZone(e.target, 56), `direction: E walks out through the east edge (${e.target.x},${e.target.z})`);
+  check(bearingToCompass(exitBearingFor('Rook_Vantis')) === a.res.dir && bearingToCompass(0) === 'N' && bearingToCompass(90) === 'E' && bearingToCompass(359) === 'N', 'the heading is stable per name and reads as a compass point');
   setProtectedZones(savedZones);
 
   // Deep water is off-limits to the pathfinder unless the bot is already swimming.
