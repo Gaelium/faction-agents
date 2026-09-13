@@ -28,7 +28,7 @@ import fs from 'node:fs';
 
 import { listProfileNames, loadProfile } from '../bots/core/profileLoader.js';
 import { Scheduler }     from './scheduler.js';
-import { Spawner }       from './spawner.js';
+import { Spawner, evenBearings } from './spawner.js';
 import { HealthMonitor } from './health.js';
 import { Dashboard }     from './dashboard.js';
 import { FleetTracker }  from './tracker.js';
@@ -91,7 +91,8 @@ log.info('profiles_loaded', { count: profiles.length, roster: opts.only ?? null,
 
 // ---------- wire ----------
 const scheduler = new Scheduler({ profiles, target: TARGET, log });
-const spawner   = new Spawner({ env: process.env, log });
+const exitBearings = evenBearings(profiles.map((p) => p.username));
+const spawner   = new Spawner({ env: process.env, log, envFor: (p) => ({ AGENT_EXIT_BEARING: String(exitBearings.get(p.username) ?? '') }) });
 const health    = new HealthMonitor({ spawner, profilesByName: byName, log });
 const tracker   = new FleetTracker({ sessionsDir: SESSIONS_DIR, memoryDir: MEMORY_DIR, log });
 for (const p of profiles) tracker.track(p.username);   // offline bots still show their last session

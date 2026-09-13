@@ -36,6 +36,7 @@ const NOTES = {
   AGENT_COMPACT_TOKENS: { default: '`120000`', effect: 'Input-token count at which compaction triggers.' },
   AGENT_STRATEGIST_MODEL: { default: '`claude-opus-5`', effect: 'Model behind the `think` tool (the strategist memo). May be a Gemini id.' },
   AGENT_STRATEGIST_EFFORT: { default: '`high`', effect: 'Thinking effort for the strategist.' },
+  AGENT_EXIT_BEARING: { default: 'a stable hash of the bot name', effect: 'Degrees (0 = north, 90 = east) that `leave_spawn` walks out on when the bot starts inside the spawn zone. The orchestrator sets one per bot, evenly spaced around its roster, so a fleet fans out; the tool\'s `direction` input overrides it.' },
   GEMINI_API_KEY: { default: '—', effect: 'Google AI Studio key for the Gemini adapter. Required when `AGENT_MODEL` or `AGENT_STRATEGIST_MODEL` is a Gemini model.' },
   GOOGLE_API_KEY: { default: '—', effect: 'Alternative name for `GEMINI_API_KEY`.' },
   GEMINI_THINKING: { default: 'from `AGENT_EFFORT`', effect: 'Gemini thinking level: `low`, `medium`, `high` or `off`. If the API rejects the field the adapter retries without it and logs `gemini_thinking_config_rejected`.' },

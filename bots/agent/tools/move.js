@@ -28,6 +28,11 @@ export function exitBearingFor(name) {
   return h % 360;
 }
 export function bearingToCompass(deg) { return COMPASS[Math.round((((deg % 360) + 360) % 360) / 45) % 8]; }
+/** The bot's heading out of spawn: AGENT_EXIT_BEARING when the orchestrator set one (evenly spaced around its roster), else the name hash. */
+export function botBearing(name) {
+  const env = Number(process.env.AGENT_EXIT_BEARING);
+  return Number.isFinite(env) ? ((env % 360) + 360) % 360 : exitBearingFor(name);
+}
 
 /** The first point along `deg` from the zone's centre that is clear of the margin; null when no zone is near. */
 function exitAlongBearing(here, deg, buffer) {
@@ -128,7 +133,7 @@ export function moveTools(deps) {
       type: 'object',
       properties: {
         margin: { type: 'integer', minimum: 8, maximum: 128, default: 48, description: 'how far past the boundary to get' },
-        direction: { type: 'string', enum: COMPASS, description: 'which side of spawn to leave on; default: your own heading (reported as dir in the result)' },
+        direction: { type: 'string', enum: COMPASS, description: 'only to leave on a specific side (for example towards your home); leave it out to use your own exact heading, which is what spreads the bots out' },
         timeout_s: { type: 'integer', minimum: 30, maximum: 300, default: 150 },
         interrupt_on: INTERRUPT_SCHEMA,
       },
@@ -138,7 +143,7 @@ export function moveTools(deps) {
     async handler({ margin = 48, timeout_s = 150, direction = null }, { cancel }) {
       const start = roundPos(bot.entity?.position);
       if (!start) return fail('no_position');
-      const bearing = direction && COMPASS_DEG[direction] != null ? COMPASS_DEG[direction] : exitBearingFor(deps.profile?.username ?? bot.username);
+      const bearing = direction && COMPASS_DEG[direction] != null ? COMPASS_DEG[direction] : botBearing(deps.profile?.username ?? bot.username);
       const dir = bearingToCompass(bearing);
       if (!isNearProtectedZone(start, margin)) return ok({ already_clear: true, pos: start, dir });
       const deadline = Date.now() + timeout_s * 1000;

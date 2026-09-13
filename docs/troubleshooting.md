@@ -300,8 +300,11 @@ see [configuration.md](configuration.md).
 from the zone centre along the same vector, and they all scanned for the
 same nearest trees (ten bots ended a session within 40 blocks of each
 other).
-**What the code does.** `leave_spawn` walks each bot out on a heading
-derived from its name and reports it as `dir`; the login message tells the
-bot which side of spawn is its own; `direction` overrides it.
+**What the code does.** The orchestrator gives every bot in its roster an
+evenly spaced heading (`AGENT_EXIT_BEARING`; a bot started by hand derives
+one from its name), `leave_spawn` walks out on it and reports the compass
+point as `dir`, and the login message tells the bot which side of spawn is
+its own. Passing `direction` quantises to eight compass points, so the
+prompt tells the bot not to.
 **Check.** `leave_spawn_hop` in the bot log shows the target; the result's
 `dir` differs between bots.

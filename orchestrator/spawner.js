@@ -21,11 +21,23 @@ const BOT_RUN_JS = path.join(PROJECT_ROOT, 'bots', 'agent', 'main.js');
  * is up, the bot gets SIGTERM and will respawn on a future scheduler tick.
  * This drives the "logs on, plays a while, logs off" feel.
  */
+/**
+ * Evenly spaced headings out of spawn (degrees, 0 = north) for a roster,
+ * by username order, so a fleet spawning on one block fans out instead of
+ * crowding one side. Passed to each bot as AGENT_EXIT_BEARING.
+ */
+export function evenBearings(usernames) {
+  const names = [...new Set(usernames)].sort();
+  const step = names.length ? 360 / names.length : 360;
+  return new Map(names.map((n, i) => [n, Math.round(i * step)]));
+}
+
 export class Spawner extends EventEmitter {
-  constructor({ env = process.env, log = null } = {}) {
+  constructor({ env = process.env, log = null, envFor = null } = {}) {
     super();
     this.env = env;
     this.log = log;
+    this.envFor = envFor;   // (profile) => extra environment for that bot's process
     /** username -> { proc, profile, startedAt, sessionMs, sessionTimer, stdoutBuf, stderrBuf } */
     this.active = new Map();
   }
@@ -43,7 +55,7 @@ export class Spawner extends EventEmitter {
 
     const proc = spawn(process.execPath, [BOT_RUN_JS, profile.username], {
       cwd: PROJECT_ROOT,
-      env: { ...this.env },
+      env: { ...this.env, ...(this.envFor?.(profile) ?? {}) },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
 

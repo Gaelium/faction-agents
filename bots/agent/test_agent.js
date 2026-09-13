@@ -821,6 +821,13 @@ function stubTools(extra = {}) {
     `two bots inside the box leave on different headings (${a.res.dir} ${a.target.x},${a.target.z} vs ${b2.res.dir} ${b2.target.x},${b2.target.z})`);
   check(e.res.status === 'ok' && e.res.dir === 'E' && e.target.x > 493 && Math.abs(e.target.z - 220) < 8 && !isNearProtectedZone(e.target, 56), `direction: E walks out through the east edge (${e.target.x},${e.target.z})`);
   check(bearingToCompass(exitBearingFor('Rook_Vantis')) === a.res.dir && bearingToCompass(0) === 'N' && bearingToCompass(90) === 'E' && bearingToCompass(359) === 'N', 'the heading is stable per name and reads as a compass point');
+  process.env.AGENT_EXIT_BEARING = '180';
+  const s = await exitFor('Rook_Vantis');
+  delete process.env.AGENT_EXIT_BEARING;
+  check(s.res.dir === 'S' && s.target.z > 314 && Math.abs(s.target.x - 400) < 8, `AGENT_EXIT_BEARING from the orchestrator overrides the name hash (${s.res.dir} ${s.target.x},${s.target.z})`);
+  const { evenBearings } = await import('../../orchestrator/spawner.js');
+  const eb = evenBearings(['b', 'a', 'c', 'a']);
+  check(eb.size === 3 && eb.get('a') === 0 && eb.get('b') === 120 && eb.get('c') === 240, 'the orchestrator spaces a roster evenly around spawn');
   setProtectedZones(savedZones);
 
   // Deep water is off-limits to the pathfinder unless the bot is already swimming.
