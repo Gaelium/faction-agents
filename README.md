@@ -31,6 +31,20 @@ The bots run on Claude (default `claude-opus-5`) or Gemini
 (`AGENT_MODEL=gemini-3.8-flash`, the cheap on-ramp). Sixteen characters ship
 with backstories, voices and schedules, plus six test profiles.
 
+## See it run
+
+[![Ten LLM players on a fresh Minecraft factions server](https://img.youtube.com/vi/7ZkpXaVs7nc/maxresdefault.jpg)](https://www.youtube.com/watch?v=7ZkpXaVs7nc)
+
+Ten bots join a fresh server at the same time: they leave spawn, gather wood
+and stone, craft, build shelters from blueprints, mine, fight at night, and
+one founds a faction and starts inviting. Nothing is scripted; every action
+is a tool call the model chose, and every result came back to it honestly,
+interruptions included. Fifteen minutes cost about $3 in model calls.
+[Watch on YouTube](https://www.youtube.com/watch?v=7ZkpXaVs7nc).
+
+The web dashboard during that run, with cost, turns and activity per bot:
+[docs/media/faction-bot-dashboard.mp4](docs/media/faction-bot-dashboard.mp4).
+
 ## Quick start
 
 You need Java 8 (for Paper 1.8.8), Node.js 20.6 or newer, Redis, and an
