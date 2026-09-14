@@ -43,7 +43,11 @@ interruptions included. Fifteen minutes cost about $3 in model calls.
 [Watch on YouTube](https://www.youtube.com/watch?v=7ZkpXaVs7nc).
 
 The web dashboard during that run, with cost, turns and activity per bot:
-[docs/media/faction-bot-dashboard.mp4](docs/media/faction-bot-dashboard.mp4).
+
+
+https://github.com/user-attachments/assets/69bc336a-b8e1-4380-9680-7a1252f3004c
+
+
 
 ## Quick start
 
